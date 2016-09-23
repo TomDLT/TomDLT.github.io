@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="keywords" content="Tom Dupré la Tour telecom paristech ecole polytechnique EPFL paris saclay scikit-learn neuroscience EEG MEG signal processing">
@@ -6,6 +7,9 @@
 
     <title>Tom Dupré la Tour</title>
     <link type="text/css" href="homepage.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -16,100 +20,102 @@
                 <img src="photos/11065597.png">
             </div>
             <h1>Tom Dupré la Tour</h1>
-            <h3>Ph.D. student</h3>
+            <h2>Ph.D. student</h2>
             <div id="contact">
 
-<!-- _____________________Social links_____________________ -->
-   
+                <!-- _____________________Social links_____________________ -->
+
                 <div id="social_link">
 
-<a href="mailto:tom.duprelatour@telecom-paristech.fr" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="icons/mail.png" height="40" width="40" alt="Send an email" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovermail.png';" onmouseout="this.src='icons/mail.png';"></span></a>
+                    <a href="mailto:tom.duprelatour@telecom-paristech.fr" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="icons/mail.png" height="40" width="40" alt="Send an email" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovermail.png';" onmouseout="this.src='icons/mail.png';"></span></a>
 
-<a href="https://github.com/TomDLT" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="icons/github.png" height="40" width="40" alt="See GitHub Profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovergithub.png';" onmouseout="this.src='icons/github.png';"></span></a>
+                    <a href="https://github.com/TomDLT" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="icons/github.png" height="40" width="40" alt="See GitHub Profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovergithub.png';" onmouseout="this.src='icons/github.png';"></span></a>
 
-<a href="https://fr.linkedin.com/pub/tom-dupr%C3%A9-la-tour/3a/294/429" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="icons/linkedin.png" height="40" width="40" alt="See LinkedIn profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseoverlinkedin.png';" onmouseout="this.src='icons/linkedin.png';"></span></a>
+                    <a href="https://fr.linkedin.com/pub/tom-dupr%C3%A9-la-tour/3a/294/429" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="icons/linkedin.png" height="40" width="40" alt="See LinkedIn profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseoverlinkedin.png';" onmouseout="this.src='icons/linkedin.png';"></span></a>
 
-                </div>       
+                </div>
             </div>
         </div>
 
-<!-- _____________________Overview_____________________ -->
+        <!-- _____________________Overview_____________________ -->
 
-<p>I am a first year Ph.D. student at 
-<a href="https://en.wikipedia.org/wiki/T%C3%A9l%C3%A9com_ParisTech">Telecom ParisTech</a>
-in France. I am supervised by
-<a href="http://alexandre.gramfort.net/">Alexandre Gramfort</a> and
-<a href="http://perso.telecom-paristech.fr/~grenier/">Yves Grenier</a>. I graduated from
-<a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique">Ecole polytechnique</a> and
-<a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique_F%C3%A9d%C3%A9rale_de_Lausanne">EPFL</a> in 2015.
-My work focuses on brain functional imaging (MEG, EEG), signal processing and machine learning.
-<!-- More details can be found in my <a href="./resume.pdf">resume</a>. -->
-</p>
+        <p>I am a second-year Ph.D. student at
+            <a href="https://en.wikipedia.org/wiki/T%C3%A9l%C3%A9com_ParisTech">Telecom ParisTech</a> in France. I am supervised by
+            <a href="http://alexandre.gramfort.net/">Alexandre Gramfort</a> and
+            <a href="http://perso.telecom-paristech.fr/~grenier/">Yves Grenier</a>. I graduated from
+            <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique">Ecole polytechnique</a> and
+            <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique_F%C3%A9d%C3%A9rale_de_Lausanne">EPFL</a> in 2015. My work focuses on brain functional imaging (MEG, EEG), signal processing and machine learning.
+            <!--More details can be found in my <a href="./resume.pdf">resume</a>.-->
+        </p>
 
-<!-- _____________________Tab System_____________________ -->
+        <!-- _____________________Tab System_____________________ -->
 
 
-    <div class="tab_system">
-        <div id="details_button" onclick="javascript:details(true)">
+        <div class="tab_system">
+            <div id="details_button" onclick="javascript:details(true)">
+            </div>
+
+            <div class="tabs">
+                <span class="tab_off tab" id="tab_publications" onclick="javascript:change_tab('publications');">Publications</span>
+                <span class="tab_off tab" id="tab_software" onclick="javascript:change_tab('software');">Software</span>
+                <span class="tab_off tab" id="tab_teaching" onclick="javascript:change_tab('teaching');">Teaching</span>
+                <span class="tab_off tab" id="tab_education" onclick="javascript:change_tab('education');">Education</span>
+            </div>
+            <div class="tab_contents">
+                <!-- _____________________Publications_____________________ -->
+
+                <div class="tab_content" id="tab_content_publications">
+                    <p> Soon ... </p>
+                </div>
+                <!-- _____________________Teaching_____________________ -->
+
+                <div class="tab_content" id="tab_content_teaching">
+                    <p> I am a teaching assistant in the following courses:</p>
+                    <li> 2016-2017 - Université Paris-Saclay (M2) - <a href="http://datascience-x-master-paris-saclay.fr/le-master/structure-des-enseignements/">One-week data camp</a> - Practical datascience</li>
+                    <li> 2016-2017 - Télécom ParisTech (M1) - <a href="https://sitepedago.telecom-paristech.fr/front/frontoffice.php?SP_ID=3241#R3228">SIGMA202a</a> - Linear time series</li>
+                    <li> 2016-2017 - Télécom ParisTech (L3) - <a href="https://pact.wp.mines-telecom.fr/">PACT</a> - Advisor for a year-long innovative team project</li>
+                </div>
+                <!-- _____________________Software_____________________ -->
+
+                <div class="tab_content" id="tab_content_software">
+                    <p> I am contributing to the following open-source projects:</p>
+                    <li><a href="http://scikit-learn.org/stable/">Scikit-Learn</a> - Machine Learning in Python
+                        <div class="indent" id="details_software0">
+                            Implementation of optimization algorithms (SAG, cd-NMF, mu-NMF), library maintenance. In owners team.
+                        </div>
+                    </li>
+                    <!--<li><a href="http://martinos.org/mne/stable/index.html">MNE-Python</a> - Processing MEG and EEG data in Python</li>-->
+                </div>
+                <!-- _____________________Education_____________________ -->
+
+                <div class="tab_content" id="tab_content_education">
+
+                    <p>I have received the following education:</p>
+                    <li> 2013-2015 - <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique_F%C3%A9d%C3%A9rale_de_Lausanne">EPFL</a> - Master in Information Technology
+                        <div class="indent" id="details_education0">
+                            Signal Processing, Image Processing, Video compression, Machine Learning, Distributed Information Systems, Wireless Transmission Algorithms, Microwaves, Photonics. Research project on Human Echolocation.
+                        </div>
+                    </li>
+
+                    <p></p>
+                    <li> 2010-2013 - <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique">Ecole polytechnique</a> - Engineer degree (Master)
+                        <div class="indent" id="details_education1">
+                            1st et 2nd years : cross-curricular formation, with Mathematics, Physics and Informatics. 3rd year : specialization in Electrical Engineering : Computer Architecture, Printed Circuit Board Design, Semiconductor Physics, Photovoltaic, Signal Processing, Opto-Electronic.
+                        </div>
+                    </li>
+                    <p></p>
+                    <li> 2008-2010 - <a href="https://en.wikipedia.org/wiki/Classe_préparatoire_aux_grandes_écoles">CPGE at Lycée Saint Louis</a> - Undergraduate study
+                        <div class="indent" id="details_education2">
+                            A 2-year intensive undergraduate program for admission to France’s top engineering schools. Mathematics, Physics.
+                        </div>
+                    </li>
+
+                </div>
+            </div>
         </div>
-        <div class="tabs">
-            <!--<span class="tab_off tab" id="tab_publications" onclick="javascript:change_tab('publications');">Publications</span>-->
-            <!--<span class="tab_off tab" id="tab_teaching" onclick="javascript:change_tab('teaching');">Teaching</span>-->
-            <span class="tab_off tab" id="tab_software" onclick="javascript:change_tab('software');">Software</span>
-            <span class="tab_off tab" id="tab_education" onclick="javascript:change_tab('education');">Education</span>
-        </div>
-        <div class="tab_contents">
-<!-- _____________________Publications_____________________ -->
-
-            <div class="tab_content" id="tab_content_publications">
-                <p> I will</p>
-            </div>
-<!-- _____________________Teaching_____________________ -->
-
-           <div class="tab_content" id="tab_content_teaching">
-                <p> I will</p>
-            </div>
-<!-- _____________________Software_____________________ -->
-
-            <div class="tab_content" id="tab_content_software">
-                <p> I am contributing to the following open-source projects:</p>
-                <li><a href="http://scikit-learn.org/stable/">Scikit-Learn</a> - Machine Learning in Python
-                    <div class="indent" id="details_software0">
-                        Implementation of optimization algorithms (SAG, cd-NMF, mu-NMF), library maintenance.
-                    </div>
-                <!--<li><a href="http://martinos.org/mne/stable/index.html">MNE-Python</a> - Processing MEG and EEG data in Python-->
-            </div>
-<!-- _____________________Education_____________________ -->
-
-            <div class="tab_content" id="tab_content_education">
-                <li> 2013-2015 - <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique_F%C3%A9d%C3%A9rale_de_Lausanne">EPFL</a>
-                    <div class="indent">Master in Information Technology</div>
-                    <div class="indent" id="details_education0">
-                        Signal Processing, Image Processing, Video compression, Machine Learning, Distributed Information Systems, Wireless Transmission Algorithms, Microwaves, Photonics.
-                        Research project on Human Echolocation.
-                    </div>
-
-                <p></p>
-                <li> 2010-2013 - <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique">Ecole polytechnique</a>           
-                    <div class="indent"> Engineer degree (Master)</div>
-                    <div class="indent" id="details_education1">
-                        1st et 2nd years : cross-curricular formation, with Mathematics, Physics and Informatics.
-                        3rd year : specialization in Electrical Engineering :  Computer Architecture, Printed Circuit Board Design, Semiconductor Physics, Photovoltaic, Signal Processing, Opto-Electronic.
-                    </div>
-
-                <p></p>
-                <li> 2008-2010 - <a href="https://en.wikipedia.org/wiki/Classe_préparatoire_aux_grandes_écoles">CPGE at Lycée Saint Louis</a>
-                    <div class="indent"> Undergraduate study</div>           
-                    <div class="indent" id="details_education2">
-                        A 2-year intensive undergraduate program for admission to France’s top engineering schools.
-                        Mathematics, Physics.
-                    </div>
-
-            </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
+        <script src="script.js"></script>
     </div>
 
 </body>
+
 </html>

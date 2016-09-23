@@ -1,32 +1,26 @@
 body {
     font-size: 18px;
-    font-family: Ubuntu;
+    font-family: 'PT Sans', serif;
     color: #222;
     margin-top: 0;
     margin-bottom: 0;
-    background-color : #324c5f;
+    background-color: #324c5f;
     /*background-image : url('background/dark.jpg'); */
 }
-
-
 a {
     color: #4b738e;
     text-decoration: none;
 }
-
-a:hover {    
+a:hover {
     color: #324c5f;
 }
-
 a.todo:hover {
     color: #AA1111;
 }
-
 p {
     line-height: 1.25em;
     text-align: justify;
 }
-
 #main {
     margin-top: 50px;
     margin-bottom: 50px;
@@ -41,20 +35,16 @@ p {
     /*background-image : url('background/light.jpg'); */
     text-align: justify;
 }
-
 #contact {
-    margin-top: 10px; 
+    margin-top: 10px;
     text-align: left;
 }
-
 #social_link {
     margin-top: 8px;
 }
-
 .indent {
     margin-left: 50px;
 }
-
 h1 {
     /*font-variant: small-caps;*/
     font-weight: bold;
@@ -64,8 +54,7 @@ h1 {
     font-family: sans-serif;
     font: Helvetica;
 }
-
-h3 {
+h2 {
     margin-top: 0px;
     margin-left: 0px;
     margin-bottom: 0px;
@@ -75,26 +64,22 @@ h3 {
     font-weight: normal;
     font-style: italic;
 }
-
 #page-head {
     padding-bottom: 30px;
 }
-
 #photo {
     height: 120px;
     float: right;
     background-color: #fff;
+    background-color: transparent;
 }
-
 #details_button {
     float: right;
 }
-
 img {
-    max-width:130%; 
-    max-height:130%;
+    max-width: 130%;
+    max-height: 130%;
 }
-
 .section-heading {
     font-size: 1.5em;
     margin-top: 2em;
@@ -102,7 +87,6 @@ img {
     padding-top: 0px;
     border-bottom: solid 1px;
 }
-
 .section-heading h2 {
     display: inline;
     color: #4b738e;
@@ -110,35 +94,32 @@ img {
 }
 
 /*_____________________Tab_____________________*/
-.tab
-{
-        display:inline-block;
-        margin-left:0px;
-        margin-right:-6px; /*-6*/
-        padding:3px;
-        border:1px solid black;
-        cursor:pointer;
+
+.tab {
+    display: inline-block;
+    margin-left: 0px;
+    margin-right: -6px;
+    /*-6*/
+    padding: 3px;
+    border: 1px solid black;
+    cursor: pointer;
 }
-.tab_off
-{
-        background:#dddddd;
-        border-bottom:1px solid black;
+.tab_off {
+    background: #dddddd;
+    border-bottom: 1px solid black;
 }
-.tab_off:hover
-{
-        background:#AAA;
+.tab_off:hover {
+    background: #AAA;
 }
-.tab_on
-{
-        background:#ECECEA;
-        border-bottom:0px solid black;
-        padding-bottom:4px;
+.tab_on {
+    background: #ECECEA;
+    border-bottom: 0px solid black;
+    padding-bottom: 4px;
 }
-.tab_content
-{
-        background-color:#ECECEA;
-        border:1px solid black;
-        margin-top:-1px;
-        padding:5px;
-        display:none;
+.tab_content {
+    background-color: #ECECEA;
+    border: 1px solid black;
+    margin-top: -1px;
+    padding: 5px;
+    display: none;
 }

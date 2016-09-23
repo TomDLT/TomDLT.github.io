@@ -23,7 +23,7 @@ function len(tab)
         return 1
     default:
         return 0
-} 
+}
 }
 
 function details(change)
