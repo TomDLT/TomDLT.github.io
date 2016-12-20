@@ -17,6 +17,8 @@ details(false);
 function len(tab)
 {
     switch(tab) {
+    case 'experience':
+        return 4
     case 'education':
         return 3
     case 'software':
