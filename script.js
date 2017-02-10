@@ -8,7 +8,7 @@ function change_tab(new_tab)
         details(false);
 }
 
-var current_tab = 'software';
+var current_tab = 'publications';
 change_tab(current_tab);
 var show_details = false;
 details(false);
