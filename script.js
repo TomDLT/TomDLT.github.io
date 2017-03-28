@@ -22,7 +22,7 @@ function len(tab)
     case 'education':
         return 3
     case 'software':
-        return 1
+        return 2
     default:
         return 0
 }
