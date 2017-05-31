@@ -7,5 +7,5 @@ function change_tab(new_tab)
         current_tab = new_tab;
 }
 
-var current_tab = 'experience';
+var current_tab = 'publications';
 change_tab(current_tab);
