@@ -5,7 +5,13 @@ function change_tab(new_tab)
         document.getElementById('tab_content_'+current_tab).style.display = 'none';
         document.getElementById('tab_content_'+new_tab).style.display = 'block';
         current_tab = new_tab;
+        return false;
 }
 
 var current_tab = 'publications';
-change_tab(current_tab);
+var hash = window.location.hash.substr(1);
+debugger;
+if (hash == '')
+    change_tab(current_tab);
+else
+    change_tab(hash);
