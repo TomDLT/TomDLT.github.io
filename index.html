@@ -87,7 +87,8 @@
         }
 
         .tab_off:hover {
-            background: #CCCCCC;
+            /*background: #CCCCCC;*/
+            text-decoration: underline;
         }
 
         .tab_off {
@@ -103,16 +104,22 @@
         }
     }
     </style>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-100319657-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
+        ga('create', 'UA-100319657-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 </head>
 
 <body>
@@ -159,11 +166,11 @@
         </div>
 
         <div class="tabs">
-            <span class="tab_off tab" id="tab_publications" onclick="javascript:change_tab('publications');"><h2><a href=#publications>Publications</h2></a></span>
-            <span class="tab_off tab" id="tab_software" onclick="javascript:change_tab('software');"><h2><a href=#software>Software</h2></a></span>
-            <span class="tab_off tab" id="tab_experience" onclick="javascript:change_tab('experience');"><h2><a href=#experience>Experience</h2></a></span>
-            <span class="tab_off tab" id="tab_teaching" onclick="javascript:change_tab('teaching');"><h2><a href=#teaching>Teaching</h2></a></span>
-            <span class="tab_off tab" id="tab_education" onclick="javascript:change_tab('education');"><h2><a href=#education>Education</h2></a></span>
+            <span class="tab_off tab" id="tab_publications" onclick="javascript:change_tab('publications');"><h2> Publications</h2></span>
+            <span class="tab_off tab" id="tab_software" onclick="javascript:change_tab('software');"><h2>Software</h2></span>
+            <span class="tab_off tab" id="tab_experience" onclick="javascript:change_tab('experience');"><h2>Experience</h2></span>
+            <span class="tab_off tab" id="tab_teaching" onclick="javascript:change_tab('teaching');"><h2>Teaching</h2></span>
+            <span class="tab_off tab" id="tab_education" onclick="javascript:change_tab('education');"><h2>Education</h2></span>
         </div>
         <div class="tab_contents">
             <!-- _____________________Publications_____________________ -->
@@ -187,14 +194,14 @@
                             <div class="pub_journal">
                                 arXiv preprint, 2017
                             </div>
-                            [<a href="https://arxiv.org/pdf/1705.08006.pdf">article</a>]
+                            [<a href="https://arxiv.org/pdf/1705.08006.pdf">pdf</a>]
                             [<a href="./pdf/nips2017bibtex.html">bibtex</a>]
                         </div>
 
                         <!-- ICASSP 2017 -->
                         <div class="pub">
                             <div class="pub_title">
-                                <a href="https://hal.archives-ouvertes.fr/hal-01448603v1">Parametric estimation of spectrum driven by an exogenous signal</a>
+                                <a href="https://hal.archives-ouvertes.fr/hal-01448603v2">Parametric estimation of spectrum driven by an exogenous signal</a>
                             </div>
                             <div class="pub_author">
                                 Tom Dupré la Tour, Yves Grenier, Alexandre Gramfort
@@ -202,7 +209,7 @@
                             <div class="pub_journal">
                                 In IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2017
                             </div>
-                            [<a href="https://hal.archives-ouvertes.fr/hal-01448603v1">article</a>]
+                            [<a href="https://hal.archives-ouvertes.fr/hal-01448603v2/document">pdf</a>]
                             [<a href="./pdf/icassp2017bibtex.html">bibtex</a>]
                             [<a href="./pdf/icassp2017poster.pdf">poster</a>]
                         </div>
@@ -257,7 +264,7 @@
                         <div class="pub_title">
                             Convolutional dictionary learning for noisy signals using αCSC in Python - Core developer
                         </div>
-                       αCSC is a model of convolutional sparse coding with an α-stable distribution to handle heavy-tailed noise.
+                        αCSC is a model of convolutional sparse coding with an α-stable distribution to handle heavy-tailed noise.
                         <p></p>
                     </div>
                 </div>
