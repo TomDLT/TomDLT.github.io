@@ -28,8 +28,8 @@ h2 {
 
 
 .vertical-align {
-    display: flex;
-    align-items: center;
+    /*display: flex;*/
+    /*align-items: center;*/
 }
 
 div.pub {
@@ -58,18 +58,10 @@ div.pub_journal {
 }
 
 .tab {
-    display: inline-block;
-    margin-left: 0px;
-    margin-right: 5px;
-    /*-6*/
-    padding: 3px;
     cursor: pointer;
-    padding-bottom: 4px;
-    color: #CCCCCC;
 }
 
 .tab_off:hover {
-    /*background: #CCCCCC;*/
     text-decoration: underline;
 }
 
@@ -80,6 +72,7 @@ div.pub_journal {
 
 .tab_on {
     color: #555555;
+    /*color: #aa1d32;*/
 }
 
 .tab_content {
@@ -103,13 +96,8 @@ nav div#sidebar ul {
   padding: 0;
   list-style-type: none;
 }
-nav div#sidebar ul.pages a {
-  font-family: 'Roboto Slab', Rockwell, Georgia, serif;
-  font-weight: bold;
-}
 nav div#sidebar ul li {
   margin: 0 1em;
-  /* Toggle inline display. */
   display: inline;
 }
 
@@ -118,6 +106,8 @@ nav div#sidebar ul li {
   nav {
     float: left;
     width: 25%;
+    position: fixed;
+    overflow: auto;
   }
 
   nav div#sidebar {
@@ -129,22 +119,11 @@ nav div#sidebar ul li {
     display: block;
   }
 
-  main {
-    float: right;
-    width: 75%;
-  }
-
   .container {
-    float: left;
+    /*float: left;*/
+    margin-left: 25%;
     width: 75%;
-    margin-top: 150px;
     max-width: 1000px
-    /*border-left: #d9dde0 1px solid;*/
-  }
-
-  main div#main {
-    margin: 0;
-    /*padding-bottom: 50px;*/
   }
 
 }
