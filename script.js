@@ -9,7 +9,7 @@ function change_tab(new_tab)
         return false;
 }
 
-var current_tab = 'publications';
+var current_tab = 'about_me';
 var hash = window.location.hash.substr(1);
 
 if (hash == '')

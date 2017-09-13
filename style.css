@@ -1,0 +1,150 @@
+body {
+    /*font-family: 'Lato', sans-serif*/
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.hr1 {
+    width: 55px;
+    height: 5px;
+    background: black;
+}
+
+h2 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.hr2 {
+    width: 35px;
+    height: 5px;
+    background: black;
+}
+
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+div.pub {
+    margin-bottom: 15px
+}
+
+div.pub_title {
+    font-weight: bold;
+}
+
+div.pub_title a {
+    color: #337ab7;
+}
+
+div.pub_author,
+div.pub_journal {
+    /*margin-left: 15px*/
+}
+
+div.pub_journal {
+    font-style: italic
+}
+
+.row h3 {
+    margin-top: 0;
+}
+
+.tab {
+    display: inline-block;
+    margin-left: 0px;
+    margin-right: 5px;
+    /*-6*/
+    padding: 3px;
+    cursor: pointer;
+    padding-bottom: 4px;
+    color: #CCCCCC;
+}
+
+.tab_off:hover {
+    /*background: #CCCCCC;*/
+    text-decoration: underline;
+}
+
+.tab_off {
+    /*color: #337ab7;*/
+    color: #aa1d32;
+}
+
+.tab_on {
+    color: #555555;
+}
+
+.tab_content {
+    display: none;
+}
+
+ul li {
+  margin: 0.15em 0;
+  font-size: 1.4em;
+}
+
+nav div#sidebar {
+  padding: 25px;
+  text-align: center;
+}
+nav div#sidebar h1 {
+  font-size: 1.6em;
+}
+nav div#sidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+nav div#sidebar ul.pages a {
+  font-family: 'Roboto Slab', Rockwell, Georgia, serif;
+  font-weight: bold;
+}
+nav div#sidebar ul li {
+  margin: 0 1em;
+  /* Toggle inline display. */
+  display: inline;
+}
+
+/* Two columns for larger screens. */
+@media screen and (min-width: 1000px) {
+  nav {
+    float: left;
+    width: 25%;
+  }
+
+  nav div#sidebar {
+    border-right: #d9dde0 1px solid;
+  }
+
+  nav div#sidebar ul li {
+    margin: 0;
+    display: block;
+  }
+
+  main {
+    float: right;
+    width: 75%;
+  }
+
+  .container {
+    float: left;
+    width: 75%;
+    margin-top: 150px;
+    max-width: 1000px
+    /*border-left: #d9dde0 1px solid;*/
+  }
+
+  main div#main {
+    margin: 0;
+    /*padding-bottom: 50px;*/
+  }
+
+}
