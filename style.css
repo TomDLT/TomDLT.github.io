@@ -79,51 +79,31 @@ div.pub_journal {
     display: none;
 }
 
-ul li {
-  margin: 0.15em 0;
-  font-size: 1.4em;
+
+/* Set gray background color and 100% height */
+.sidenav {
+background-color: #f1f1f1;
+height: 100%;
+text-align: center;
+font-size: 1.6em;
 }
 
-nav div#sidebar {
-  padding: 25px;
-  text-align: center;
+ .navbar-brand {
+/* background-color: #f1f1f1; */
+font-size: 1.8em;
 }
-nav div#sidebar h1 {
+
+
+.navbar .navbar-header {
+  vertical-align: center;
+  line-height: 50px;
   font-size: 1.6em;
 }
-nav div#sidebar ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-nav div#sidebar ul li {
-  margin: 0 1em;
-  display: inline;
+
+.navbar .navbar-collapse {
+  text-align: center;
+  font-size: 1.6em;
 }
 
-/* Two columns for larger screens. */
-@media screen and (min-width: 1000px) {
-  nav {
-    float: left;
-    width: 25%;
-    position: fixed;
-    overflow: auto;
-  }
 
-  nav div#sidebar {
-    border-right: #d9dde0 1px solid;
-  }
 
-  nav div#sidebar ul li {
-    margin: 0;
-    display: block;
-  }
-
-  .container {
-    /*float: left;*/
-    margin-left: 25%;
-    width: 75%;
-    max-width: 1000px
-  }
-
-}

@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Tom Dupré la Tour</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Academic webpage of Tom Dupré la Tour.">
-
-  <meta name="keywords" content="Tom Dupré la Tour telecom paristech ecole polytechnique EPFL paris saclay scikit-learn neuroscience EEG MEG signal processing machine learning">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
   <link type="text/css" media="screen" href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script>
     (function(i, s, o, g, r, a, m) {
@@ -35,15 +28,58 @@
     ga('create', 'UA-100319657-1', 'auto');
     ga('send', 'pageview');
   </script>
-</head>
 
+</head>
 <body>
 
-  <nav>
-    <div id="sidebar">
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a href="">
+      <img src="photos/linkedin_m.jpg" width="40" height="40" alt="Tom Dupré la Tour" class="img-circle" style="float: left; margin: 5px;" >
+      </a>
 
-      <div style="vertical-align:middle; display: inline-block;">
+      <a class="navbar-brand" href="" style="float: left;">Tom Dupré la Tour</a>
+
+      <div id="social_link">
+        <a href="mailto:tom.duprelatour@telecom-paristech.fr" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="icons/mail.png" height="40" width="40" alt="Send an email" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovermail.png';" onmouseout="this.src='icons/mail.png';"></span></a>
+
+        <a href="https://github.com/TomDLT" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="icons/github.png" height="40" width="40" alt="See GitHub Profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovergithub.png';" onmouseout="this.src='icons/github.png';"></span></a>
+
+        <a href="https://fr.linkedin.com/pub/tom-dupr%C3%A9-la-tour/3a/294/429" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="icons/linkedin.png" height="40" width="40" alt="See LinkedIn profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseoverlinkedin.png';" onmouseout="this.src='icons/linkedin.png';"></span></a>
+
+        <a href="https://scholar.google.fr/citations?user=LuzAM-4AAAAJ&hl=fr&oi=ao" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="icons/scholar.png" height="40" width="40" alt="See Google Scholar profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseoverscholar.png';" onmouseout="this.src='icons/scholar.png';"></span></a>
+      </div>
+    </div>
+
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><span class="tab_off tab active" id="tab_about_me" onclick="javascript:change_tab('about_me');">About me</span></li>
+        <li><span class="tab_off tab" id="tab_publications" onclick="javascript:change_tab('publications');">Publications</span></li>
+        <li><span class="tab_off tab" id="tab_talks" onclick="javascript:change_tab('talks');">Talks</span></li>
+        <li><span class="tab_off tab" id="tab_software" onclick="javascript:change_tab('software');">Software</span></li>
+        <li><span class="tab_off tab" id="tab_experience" onclick="javascript:change_tab('experience');">Experience</span></li>
+        <li><span class="tab_off tab" id="tab_teaching" onclick="javascript:change_tab('teaching');">Teaching</span></li>
+        <li><span class="tab_off tab" id="tab_education" onclick="javascript:change_tab('education');">Education</span></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+
+      <div style="vertical-align:middle; display: inline-block; margin-top: 20px;">
+	<a href="">
         <img src="photos/linkedin_m.jpg" width="150" alt="Tom Dupré la Tour" class="img-circle img-responsive" />
+        </a>
       </div>
 
       <h1>Tom Dupré la Tour</h1>
@@ -62,22 +98,20 @@
       <div style="height:25px">
       </div>
 
-      <ul class="tabs">
-        <li><span class="tab_off tab" id="tab_about_me" onclick="javascript:change_tab('about_me');">About me</span></li>
+      <ul class="nav nav-pills nav-stacked">
+        <li><span class="tab_off tab active" id="tab_about_me" onclick="javascript:change_tab('about_me');">About me</span></li>
         <li><span class="tab_off tab" id="tab_publications" onclick="javascript:change_tab('publications');">Publications</span></li>
         <li><span class="tab_off tab" id="tab_talks" onclick="javascript:change_tab('talks');">Talks</span></li>
         <li><span class="tab_off tab" id="tab_software" onclick="javascript:change_tab('software');">Software</span></li>
         <li><span class="tab_off tab" id="tab_experience" onclick="javascript:change_tab('experience');">Experience</span></li>
         <li><span class="tab_off tab" id="tab_teaching" onclick="javascript:change_tab('teaching');">Teaching</span></li>
         <li><span class="tab_off tab" id="tab_education" onclick="javascript:change_tab('education');">Education</span></li>
-      </ul>
-
+      </ul><br>
     </div>
-    <!-- /#sidebar -->
-  </nav>
+    
+    
+    <div class="col-sm-9">
 
-
-  <div class="container">
 
     <!-- <img src="https://img.shields.io/badge/%20-preprint-orange.svg?logoWidth=-13">
         <img src="https://img.shields.io/badge/%20-poster-green.svg?logoWidth=-13&colorB=ae3baf">
@@ -266,6 +300,8 @@
             Implementation of optimization algorithms (SAG, cd-NMF, mu-NMF), library maintenance.
             <p></p>
           </div>
+	</div>
+	<div class="row">
           <div class="col-md-2">
             <h3><a href="https://github.com/pactools/pactools">pactools</a></h3>
           </div>
@@ -276,6 +312,8 @@
             Estimation of PAC in neural time series. In particular, it implements driven auto-regressive (DAR) models.
             <p></p>
           </div>
+	</div>
+	<div class="row">
           <div class="col-md-2">
             <h3><a href="https://github.com/alphacsc/alphacsc">alphacsc</a></h3>
           </div>
@@ -428,18 +466,19 @@
             A 2-year intensive undergraduate program for admission to France’s top engineering schools. <br>Mathematics, Physics.
             <p></p>
           </div>
+</div>
 
 
         </div>
       </div>
     </div>
+
+    </div>
   </div>
+</div>
 
-
-
-  <script src="script.js"></script>
-
+<script src="script.js"></script>
 
 </body>
-
 </html>
+
