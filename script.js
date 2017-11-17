@@ -11,6 +11,20 @@ function change_tab(new_tab)
         return false;
 }
 
+function select_publication(pub_type='pub') {
+    var x = document.getElementById("tab_content_publications");
+    var all = x.getElementsByClassName("pub");
+    var except = x.getElementsByClassName(pub_type);
+
+    var i;
+    for (i = 0; i < all.length; i++) {
+        all[i].style.display = 'none';
+    }
+    for (i = 0; i < except.length; i++) {
+        except[i].style.display = '';
+    }
+}
+
 var current_tab = 'about_me';
 var hash = window.location.hash.substr(1);
 
