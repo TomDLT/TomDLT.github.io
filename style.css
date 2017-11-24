@@ -26,6 +26,10 @@ h2 {
     background: black;
 }
 
+.social-link li {
+  display: inline;
+  white-space: nowrap;
+}
 
 .vertical-align {
     /*display: flex;*/
@@ -107,4 +111,8 @@ font-size: 1.8em;
 
 .btn {
     background-color: #f1f1f1;
+}
+
+.btn_on {
+    background-color: #d1d1d1;
 }
