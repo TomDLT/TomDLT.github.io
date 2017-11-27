@@ -1,515 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Tom Dupré la Tour</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Academic webpage of Tom Dupré la Tour.">
-  <link type="text/css" media="screen" href="style.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <script>
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-100319657-1', 'auto');
-    ga('send', 'pageview');
-  </script>
-
-</head>
-<body>
-
-<nav class="navbar navbar-inverse visible-xs">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-        <a href="">
-        <img src="photos/linkedin_m.jpg" width="40" height="40" alt="Tom Dupré la Tour" class="img-circle" style="float: left; margin: 5px;" >
-        </a>
-
-        <a class="navbar-brand" href="" style="float: left;">Tom Dupré&nbsp;la&nbsp;Tour</a>
-
-        <ul class="social-link">
+  <head>
+    <title>Tom Dupré la Tour</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Academic webpage of Tom Dupré la Tour.">
+    <link type="text/css" media="screen" href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+      
+      ga('create', 'UA-100319657-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse visible-xs">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          <a href="">
+          <img src="photos/linkedin_m.jpg" width="40" height="40" alt="Tom Dupré la Tour" class="img-circle" style="float: left; margin: 5px;" >
+          </a>
+          <a class="navbar-brand" href="" style="float: left;">Tom Dupré&nbsp;la&nbsp;Tour</a>
+          <ul class="social-link">
             <li><a href="mailto:tom.duprelatour@telecom-paristech.fr" style="text-decoration:none;"><img src="icons/mail.png" height="40" width="40" alt="Send an email" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovermail.png';" onmouseout="this.src='icons/mail.png';"></a>
             <li><a href="https://github.com/TomDLT" style="text-decoration:none;"><img src="icons/github.png" height="40" width="40" alt="See GitHub Profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovergithub.png';" onmouseout="this.src='icons/github.png';"></a>
             <li><a href="https://fr.linkedin.com/pub/tom-dupr%C3%A9-la-tour/3a/294/429" style="text-decoration:none;"><img src="icons/linkedin.png" height="40" width="40" alt="See LinkedIn profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseoverlinkedin.png';" onmouseout="this.src='icons/linkedin.png';"></a>
             <li><a href="https://scholar.google.fr/citations?user=LuzAM-4AAAAJ&hl=fr&oi=ao" style="text-decoration:none;"><img src="icons/scholar.png" height="40" width="40" alt="See Google Scholar profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseoverscholar.png';" onmouseout="this.src='icons/scholar.png';"></a>
-        </ul>
-    </div>
-
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><span class="tab_off tab active" id="tab2_about_me" onclick="javascript:change_tab('about_me');">About me</span></li>
-        <li><span class="tab_off tab" id="tab2_publications" onclick="javascript:change_tab('publications');">Publications</span></li>
-        <li><span class="tab_off tab" id="tab2_talks" onclick="javascript:change_tab('talks');">Talks</span></li>
-        <li><span class="tab_off tab" id="tab2_software" onclick="javascript:change_tab('software');">Software</span></li>
-        <li><span class="tab_off tab" id="tab2_experience" onclick="javascript:change_tab('experience');">Experience</span></li>
-        <li><span class="tab_off tab" id="tab2_teaching" onclick="javascript:change_tab('teaching');">Teaching</span></li>
-        <li><span class="tab_off tab" id="tab2_education" onclick="javascript:change_tab('education');">Education</span></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-3 sidenav hidden-xs">
-
-      <div style="vertical-align:middle; display: inline-block; margin-top: 20px;">
-	<a href="">
-        <img src="photos/linkedin_m.jpg" width="150" alt="Tom Dupré la Tour" class="img-circle img-responsive" />
-        </a>
-      </div>
-
-      <h2>Tom Dupré&nbsp;la&nbsp;Tour</h2>
-      <!-- <hr class="hr1" /> -->
-
-        <a href="mailto:tom.duprelatour@telecom-paristech.fr" style="text-decoration:none;"><img src="icons/mail.png" height="40" width="40" alt="Send an email" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovermail.png';" onmouseout="this.src='icons/mail.png';"></a>
-        <a href="https://github.com/TomDLT" style="text-decoration:none;"><img src="icons/github.png" height="40" width="40" alt="See GitHub Profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovergithub.png';" onmouseout="this.src='icons/github.png';"></a>
-        <a href="https://fr.linkedin.com/pub/tom-dupr%C3%A9-la-tour/3a/294/429" style="text-decoration:none;"><img src="icons/linkedin.png" height="40" width="40" alt="See LinkedIn profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseoverlinkedin.png';" onmouseout="this.src='icons/linkedin.png';"></a>
-        <a href="https://scholar.google.fr/citations?user=LuzAM-4AAAAJ&hl=fr&oi=ao" style="text-decoration:none;"><img src="icons/scholar.png" height="40" width="40" alt="See Google Scholar profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseoverscholar.png';" onmouseout="this.src='icons/scholar.png';"></a>
-
-      <div style="height:25px">
-      </div>
-
-      <ul class="nav nav-pills nav-stacked">
-        <li><span class="tab_off tab active" id="tab_about_me" onclick="javascript:change_tab('about_me');">About me</span></li>
-        <li><span class="tab_off tab" id="tab_publications" onclick="javascript:change_tab('publications');">Publications</span></li>
-        <li><span class="tab_off tab" id="tab_talks" onclick="javascript:change_tab('talks');">Talks</span></li>
-        <li><span class="tab_off tab" id="tab_software" onclick="javascript:change_tab('software');">Software</span></li>
-        <li><span class="tab_off tab" id="tab_experience" onclick="javascript:change_tab('experience');">Experience</span></li>
-        <li><span class="tab_off tab" id="tab_teaching" onclick="javascript:change_tab('teaching');">Teaching</span></li>
-        <li><span class="tab_off tab" id="tab_education" onclick="javascript:change_tab('education');">Education</span></li>
-      </ul><br>
-    </div>
-
-
-    <div class="col-sm-9">
-
-
-    <!-- <img src="https://img.shields.io/badge/%20-preprint-orange.svg?logoWidth=-13">
-        <img src="https://img.shields.io/badge/%20-poster-green.svg?logoWidth=-13&colorB=ae3baf">
-        <img src="https://img.shields.io/badge/%20-proceedings-green.svg?logoWidth=-13"> -->
-    <div class="tab_contents">
-      <!-- _____________________About me_____________________ -->
-      <div class="tab_content" id="tab_content_about_me">
-        <h2>About me</h2>
-        <!-- <hr align="left" class="hr2" /> -->
-
-        <div class="row">
-          <div class="col-md-10">
-            <p class="lead">
-              I am a third-year Ph.D. student in the <a href="http://www.tsi.telecom-paristech.fr/en/">Image, Data, Signal</a> department at
-              <a href="https://en.wikipedia.org/wiki/T%C3%A9l%C3%A9com_ParisTech">Telecom ParisTech</a> in France, supervised by
-              <a href="http://alexandre.gramfort.net/">Alexandre Gramfort</a> and
-              <a href="http://perso.telecom-paristech.fr/~grenier/">Yves Grenier</a>.
-            </p>
-            <p class="lead">
-              I graduated from
-              <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique">Ecole polytechnique</a> in 2013 and
-              <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique_F%C3%A9d%C3%A9rale_de_Lausanne">EPFL</a> in 2015.
-            </p>
-            <p class="lead">My work focuses on neuronal oscillations (ECoG, LFP), signal processing and machine learning.
-              <!--More details can be found in my <a href="./pdf/resume.pdf">resume</a>.-->
-            </p>
-          </div>
-
+          </ul>
         </div>
-
-      <h2>News</h2>
-
-        <div class="row">
-          <div class="col-md-10">
-            
-            <ul class="list-group">
-              <li class="list-group-item">Nov. 2017 - Accepted <a href="https://www.biorxiv.org/content/early/2017/11/07/159731">journal paper</a> at PLoS Computational biology</li>
-              <li class="list-group-item">Sep. 2017 - <a href="./pdf/c3s2017slides.pdf">Oral presentation</a> at C3S conference at Cologne</li>
-              <li class="list-group-item">Sep. 2017 - Accepted <a href="https://papers.nips.cc/paper/6710-learning-the-morphology-of-brain-signals-using-alpha-stable-convolutional-sparse-coding">conference paper</a> at NIPS 2017 </li>
-            </ul>
-
-          </div>
-
-        </div>
-      
-      </div>
-
-      <!-- _____________________Publications_____________________ -->
-      <div class="tab_content" id="tab_content_publications">
-
-        <h2>Publications</h2>
-        <!-- <hr align="left" class="hr2" /> -->
-
-        <button type="button" class="btn btn-secondary btn_on" id="btn_pub" onclick="select_publication('pub')">All</button>
-        <button type="button" class="btn btn-secondary" id="btn_preprint" onclick="select_publication('preprint')">Preprints</button>
-        <button type="button" class="btn btn-secondary" id="btn_proceeding" onclick="select_publication('proceeding')">Proceedings</button>
-        <button type="button" class="btn btn-secondary" id="btn_journal" onclick="select_publication('journal')">Journals</button>
-        <div style="height:25px">
-        </div>
-
-        <div class="row">
-          <div class="col-md-1">
-            <h3>2017</h3>
-          </div>
-          <div class="col-md-11">
-            <!-- Nat Neuroscience 2017 -->
-            <div class="pub preprint">
-            <div class="pub_title">
-              <a href="https://www.biorxiv.org/content/early/2017/10/18/205245">Oscillatory multiplexing indexes precision</a>
-            </div>
-            <div class="pub_author">
-              Laetitia Grabot, Tadeusz W. Kononowicz, Tom Dupré la Tour, Alexandre Gramfort, Valérie Doyère, Virginie van Wassenhove
-            </div>
-            <div class="pub_journal">
-              bioRxiv preprint, 2017
-            </div>
-            [<a href="https://www.biorxiv.org/content/early/2017/10/18/205245.full.pdf">pdf</a>]
-            [<a href="./bib/biorxiv2017.bib">bibtex</a>]
-            </div>
-
-
-            <!-- PLOS 2017 -->
-            <div class="pub journal">
-              <div class="pub_title">
-                <a href="https://www.biorxiv.org/content/early/2017/11/07/159731">Non-linear auto-regressive models for cross-frequency coupling in neural time series</a>
-              </div>
-              <div class="pub_author">
-                Tom Dupré la Tour, Lucille Tallot, Laetitia Grabot, Valérie Doyere, Virginie van Wassenhove, Yves Grenier, Alexandre Gramfort
-              </div>
-              <div class="pub_journal">
-                PLoS Computational biology (accepted), 2017
-              </div>
-              [<a href="https://www.biorxiv.org/content/early/2017/11/07/159731.full.pdf">pdf</a>]
-              [<a href="./bib/plos2017.bib">bibtex</a>]
-              [<a href="./pdf/ohbm2017poster.pdf">poster</a>]
-              [<a href="./pdf/c3s2017slides.pdf">slides</a>]
-              [<a href="https://github.com/pactools/pactools">code</a>]
-            </div>
-
-            <!-- NIPS 2017 -->
-            <div class="pub proceeding">
-              <div class="pub_title">
-                <a href="https://papers.nips.cc/paper/6710-learning-the-morphology-of-brain-signals-using-alpha-stable-convolutional-sparse-coding">Learning the morphology of brain signals using alpha-stable convolutional sparse coding</a>
-              </div>
-              <div class="pub_author">
-                Mainak Jas, Tom Dupré la Tour, Umut Şimşekli, Alexandre Gramfort
-              </div>
-              <div class="pub_journal">
-                Advances in Neural Information Processing Systems (NIPS), 2017
-              </div>
-              [<a href="https://arxiv.org/pdf/1705.08006v2.pdf">pdf</a>]
-              [<a href="./bib/nips2017.bib">bibtex</a>]
-              [<a href="https://github.com/alphacsc/alphacsc">code</a>]
-            </div>
-
-            <!-- ICASSP 2017 -->
-            <div class="pub proceeding">
-              <div class="pub_title">
-                <a href="http://ieeexplore.ieee.org/document/7952968/">Parametric estimation of spectrum driven by an exogenous signal</a>
-              </div>
-              <div class="pub_author">
-                Tom Dupré la Tour, Yves Grenier, Alexandre Gramfort
-              </div>
-              <div class="pub_journal">
-                IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2017
-              </div>
-              [<a href="https://hal.archives-ouvertes.fr/hal-01448603v2/document">pdf</a>]
-              [<a href="./bib/icassp2017.bib">bibtex</a>]
-              [<a href="./pdf/icassp2017poster.pdf">poster</a>]
-              [<a href="https://github.com/pactools/pactools">code</a>]
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-      <!-- _____________________Talks_____________________ -->
-      <div class="tab_content" id="tab_content_talks">
-        <h2>Talks</h2>
-        <!-- <hr align="left" class="hr2" /> -->
-
-        <div class="row">
-          <div class="col-md-1">
-            <h3>2017</h3>
-          </div>
-          <div class="col-md-11">
-            <!-- C3S 2017 -->
-            <div class="pub">
-              <div class="pub_title">
-                <a href="http://www.biorxiv.org/content/early/2017/07/06/159731">Non-linear auto-regressive models for cross-frequency coupling in neural time series</a>
-              </div>
-              <div class="pub_author">
-                Tom Dupré la Tour, Lucille Tallot, Laetitia Grabot, Valérie Doyere, Virginie van Wassenhove, Yves Grenier, Alexandre Gramfort
-              </div>
-              <div class="pub_journal">
-                Coupling and Causality in Complex Systems (C3S), 2017
-              </div>
-              [<a href="./pdf/c3s2017slides.pdf">slides</a>]
-            </div>
-
-            <!-- OHBM 2017 -->
-            <div class="pub">
-              <div class="pub_title">
-                <a href="https://files.aievolution.com/hbm1701/abstracts/38101/1759_DuprlaTour.pdf">Parametric models of phase-amplitude coupling</a>
-              </div>
-              <div class="pub_author">
-                Tom Dupré la Tour, Lucille Tallot, Laetitia Grabot, Valérie Doyere, Virginie van Wassenhove, Yves Grenier, Alexandre Gramfort
-              </div>
-              <div class="pub_journal">
-                Organization for Human Brain Mapping (OHBM) annual meeting, 2017
-              </div>
-              [<a href="./pdf/ohbm2017poster.pdf">poster</a>]
-            </div>
-
-            <!-- BASP 2017 -->
-            <div class="pub">
-              <div class="pub_title">
-                <a href="http://www.baspfrontiers.org/proceedings.php">Parametric models of phase-amplitude coupling in neural time series</a>
-              </div>
-              <div class="pub_author">
-                Tom Dupré la Tour, Yves Grenier, Alexandre Gramfort
-              </div>
-              <div class="pub_journal">
-                International Biomedical and Astronomical Signal Processing (BASP) Frontiers workshop, 2017
-              </div>
-              [<a href="./pdf/basp2017poster.pdf">poster</a>]
-            </div>
-	  </div>
-
-          <div class="col-md-1">
-            <h3>2016</h3>
-          </div>
-          <div class="col-md-11">
-	    <!-- Pydata Paris 2017 -->
-            <div class="pub">
-              <div class="pub_title">
-                <a href="https://pydata.org/paris2016/">Training with open-source</a>
-              </div>
-              <div class="pub_author">
-                Tom Dupré la Tour
-              </div>
-              <div class="pub_journal">
-                PyData Paris, scikit-learn day, 2016
-              </div>
-              [<a href="./pdf/pydata2016slides.pdf">slides</a>]
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- _____________________Software_____________________ -->
-      <div class="tab_content" id="tab_content_software">
-        <h2>Software</h2>
-        <!-- <hr align="left" class="hr2" /> -->
-
-        <div class="row">
-          <div class="col-md-2">
-            <h3><a href="http://scikit-learn.org/stable/">scikit-learn</a></h3>
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              Machine Learning in Python - Core developer
-            </div>
-            Implementation of optimization algorithms (SAG, cd-NMF, mu-NMF), library maintenance.
-            <p></p>
-          </div>
-	</div>
-	<div class="row">
-          <div class="col-md-2">
-            <h3><a href="https://github.com/pactools/pactools">pactools</a></h3>
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              Phase amplitude coupling (PAC) in Python - Main developer
-            </div>
-            Estimation of PAC in neural time series. In particular, it implements driven auto-regressive (DAR) models.
-            <p></p>
-          </div>
-	</div>
-	<div class="row">
-          <div class="col-md-2">
-            <h3><a href="https://github.com/alphacsc/alphacsc">alphacsc</a></h3>
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              Convolutional dictionary learning for noisy signals using αCSC in Python - Core developer
-            </div>
-            αCSC is a model of convolutional sparse coding with an α-stable distribution to handle heavy-tailed noise.
-            <p></p>
-          </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><span class="tab_off tab active" id="tab2_about_me" onclick="javascript:change_tab('about_me');">About me</span></li>
+            <li><span class="tab_off tab" id="tab2_publications" onclick="javascript:change_tab('publications');">Publications</span></li>
+            <li><span class="tab_off tab" id="tab2_talks" onclick="javascript:change_tab('talks');">Talks</span></li>
+            <li><span class="tab_off tab" id="tab2_software" onclick="javascript:change_tab('software');">Software</span></li>
+            <li><span class="tab_off tab" id="tab2_experience" onclick="javascript:change_tab('experience');">Experience</span></li>
+            <li><span class="tab_off tab" id="tab2_teaching" onclick="javascript:change_tab('teaching');">Teaching</span></li>
+            <li><span class="tab_off tab" id="tab2_education" onclick="javascript:change_tab('education');">Education</span></li>
+          </ul>
         </div>
       </div>
-
-      <!-- _____________________Experience_____________________ -->
-      <div class="tab_content" id="tab_content_experience">
-        <h2>Experience</h2>
-        <!-- <hr align="left" class="hr2" /> -->
-
-        <div class="row">
-
-          <div class="col-md-2">
-            <h3>2015</h3> (5 months)
+    </nav>
+    <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidenav hidden-xs">
+          <div style="vertical-align:middle; display: inline-block; margin-top: 20px;">
+            <a href="">
+            <img src="photos/linkedin_m.jpg" width="150" alt="Tom Dupré la Tour" class="img-circle img-responsive" />
+            </a>
           </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              Research developer at <a href="https://en.wikipedia.org/wiki/T%C3%A9l%C3%A9com_ParisTech">Telecom ParisTech</a>
-            </div>
-            Development of <a href="https://en.wikipedia.org/wiki/Scikit-learn">scikit-learn</a>, an open source machine learning library in python.<br> Development of SAG and NMF algorithms, library maintenance.
-            <p></p>
+          <h2>Tom Dupré&nbsp;la&nbsp;Tour</h2>
+          <!-- <hr class="hr1" /> -->
+          <a href="mailto:tom.duprelatour@telecom-paristech.fr" style="text-decoration:none;"><img src="icons/mail.png" height="40" width="40" alt="Send an email" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovermail.png';" onmouseout="this.src='icons/mail.png';"></a>
+          <a href="https://github.com/TomDLT" style="text-decoration:none;"><img src="icons/github.png" height="40" width="40" alt="See GitHub Profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseovergithub.png';" onmouseout="this.src='icons/github.png';"></a>
+          <a href="https://fr.linkedin.com/pub/tom-dupr%C3%A9-la-tour/3a/294/429" style="text-decoration:none;"><img src="icons/linkedin.png" height="40" width="40" alt="See LinkedIn profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseoverlinkedin.png';" onmouseout="this.src='icons/linkedin.png';"></a>
+          <a href="https://scholar.google.fr/citations?user=LuzAM-4AAAAJ&hl=fr&oi=ao" style="text-decoration:none;"><img src="icons/scholar.png" height="40" width="40" alt="See Google Scholar profile" style="vertical-align:middle;" border="0" onmouseover="this.src='icons/mouseoverscholar.png';" onmouseout="this.src='icons/scholar.png';"></a>
+          <div style="height:25px">
           </div>
-
-          <div class="col-md-2">
-            <h3>2014 </h3> (6 months)
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              Research intern at <a href="https://en.wikipedia.org/wiki/DxO_Labs">DxO Labs</a>
-            </div>
-            Image processing research on motion deblurring.<br> Literature review, prototyping on Matlab, state of the art improvement (not published).
-            <p></p>
-          </div>
-
-          <div class="col-md-2">
-            <h3>2013</h3> (3 months)
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              Research intern at <a href="https://fr.wikipedia.org/wiki/Institut_d'%C3%A9lectronique_fondamentale">Institut d'Electronique Fondamentale</a>
-            </div>
-            Research on a new calculus paradigm using stochastic binary signals.<br> Matlab simulations and implementation of these gates with analogic CMOS circuit (with Cadence).<br>
-            <i>Summa cum laude</i> from Ecole polytechnique (top 10%)
-            <p></p>
-          </div>
-
-          <div class="col-md-2">
-            <h3>2011</h3> (7 months)
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              Full time first responder at <a href="https://en.wikipedia.org/wiki/Paris_Fire_Brigade">Paris Fire Brigade</a>
-            </div>
-            Lead a first aiders unit at Paris Fire Brigade.<br> Decision making in critical situations (childbirth, cardiac arrests, ...)
-            <p></p>
-          </div>
+          <ul class="nav nav-pills nav-stacked">
+            <li><span class="tab_off tab active" id="tab_about_me" onclick="javascript:change_tab('about_me');">About me</span></li>
+            <li><span class="tab_off tab" id="tab_publications" onclick="javascript:change_tab('publications');">Publications</span></li>
+            <li><span class="tab_off tab" id="tab_talks" onclick="javascript:change_tab('talks');">Talks</span></li>
+            <li><span class="tab_off tab" id="tab_software" onclick="javascript:change_tab('software');">Software</span></li>
+            <li><span class="tab_off tab" id="tab_experience" onclick="javascript:change_tab('experience');">Experience</span></li>
+            <li><span class="tab_off tab" id="tab_teaching" onclick="javascript:change_tab('teaching');">Teaching</span></li>
+            <li><span class="tab_off tab" id="tab_education" onclick="javascript:change_tab('education');">Education</span></li>
+          </ul>
+          <br>
         </div>
-
-      </div>
-
-
-
-      <!-- _____________________Teaching_____________________ -->
-      <div class="tab_content" id="tab_content_teaching">
-        <h2>Teaching</h2>
-        <!-- <hr align="left" class="hr2" /> -->
-
-        <div class="row">
-          <div class="col-md-2">
-            <h3>2016-2017</h3>
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              Practical datascience
+        <div class="col-sm-9">
+          <!-- <img src="https://img.shields.io/badge/%20-preprint-orange.svg?logoWidth=-13">
+            <img src="https://img.shields.io/badge/%20-poster-green.svg?logoWidth=-13&colorB=ae3baf">
+            <img src="https://img.shields.io/badge/%20-proceedings-green.svg?logoWidth=-13"> -->
+          <div class="tab_contents">
+            <!-- _____________________About me_____________________ -->
+            <div class="tab_content" id="tab_content_about_me">
+              <h2>About me</h2>
+              <!-- <hr align="left" class="hr2" /> -->
+              <div class="row">
+                <div class="col-md-10">
+                  <p class="lead">
+                    I am a third-year Ph.D. student in the <a href="http://www.tsi.telecom-paristech.fr/en/">Image, Data, Signal</a> department at
+                    <a href="https://en.wikipedia.org/wiki/T%C3%A9l%C3%A9com_ParisTech">Telecom ParisTech</a> in France, supervised by
+                    <a href="http://alexandre.gramfort.net/">Alexandre Gramfort</a> and
+                    <a href="http://perso.telecom-paristech.fr/~grenier/">Yves Grenier</a>.
+                  </p>
+                  <p class="lead">
+                    I graduated from
+                    <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique">Ecole polytechnique</a> in 2013 and
+                    <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique_F%C3%A9d%C3%A9rale_de_Lausanne">EPFL</a> in 2015.
+                  </p>
+                  <p class="lead">
+                    My work focuses on neuronal oscillations (ECoG, LFP), signal processing and machine learning.
+                    <!--More details can be found in my <a href="./pdf/resume.pdf">resume</a>.-->
+                  </p>
+                </div>
+              </div>
+              <h2>News</h2>
+              <div class="row">
+                <div class="col-md-10">
+                  <ul class="list-group">
+                    <li class="list-group-item">Nov. 2017 - Accepted <a href="https://www.biorxiv.org/content/early/2017/11/07/159731">journal paper</a> at PLoS Computational biology</li>
+                    <li class="list-group-item">Sep. 2017 - <a href="./pdf/c3s2017slides.pdf">Oral presentation</a> at C3S conference at Cologne</li>
+                    <li class="list-group-item">Sep. 2017 - Accepted <a href="https://papers.nips.cc/paper/6710-learning-the-morphology-of-brain-signals-using-alpha-stable-convolutional-sparse-coding">conference paper</a> at NIPS 2017 </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <a href="http://datascience-x-master-paris-saclay.fr/le-master/structure-des-enseignements/">One-week data camp</a> - Université Paris-Saclay (M2)
-            <p></p>
-
-            <div class="pub_title">
-              Linear time series
+            <!-- _____________________Publications_____________________ -->
+            <div class="tab_content" id="tab_content_publications">
+              <h2>Publications</h2>
+              <!-- <hr align="left" class="hr2" /> -->
+              <button type="button" class="btn btn-secondary btn_on" id="btn_pub" onclick="select_publication('pub')">All</button>
+              <button type="button" class="btn btn-secondary" id="btn_preprint" onclick="select_publication('preprint')">Preprints</button>
+              <button type="button" class="btn btn-secondary" id="btn_proceeding" onclick="select_publication('proceeding')">Proceedings</button>
+              <button type="button" class="btn btn-secondary" id="btn_journal" onclick="select_publication('journal')">Journals</button>
+              <div style="height:25px">
+              </div>
+              <div class="row">
+                <div class="col-md-1">
+                  <h3>2017</h3>
+                </div>
+                <div class="col-md-11">
+                  <!-- Nat Neuroscience 2017 -->
+                  <div class="pub preprint">
+                    <div class="pub_title">
+                      <a href="https://www.biorxiv.org/content/early/2017/10/18/205245">Oscillatory multiplexing indexes precision</a>
+                    </div>
+                    <div class="pub_author">
+                      Laetitia Grabot, Tadeusz W. Kononowicz, Tom Dupré la Tour, Alexandre Gramfort, Valérie Doyère, Virginie van Wassenhove
+                    </div>
+                    <div class="pub_journal">
+                      bioRxiv preprint, 2017
+                    </div>
+                    [<a href="https://www.biorxiv.org/content/early/2017/10/18/205245.full.pdf">pdf</a>]
+                    [<a href="./bib/biorxiv2017.bib">bibtex</a>]
+                  </div>
+                  <!-- PLOS 2017 -->
+                  <div class="pub journal">
+                    <div class="pub_title">
+                      <a href="https://www.biorxiv.org/content/early/2017/11/07/159731">Non-linear auto-regressive models for cross-frequency coupling in neural time series</a>
+                    </div>
+                    <div class="pub_author">
+                      Tom Dupré la Tour, Lucille Tallot, Laetitia Grabot, Valérie Doyere, Virginie van Wassenhove, Yves Grenier, Alexandre Gramfort
+                    </div>
+                    <div class="pub_journal">
+                      PLoS Computational biology (accepted), 2017
+                    </div>
+                    [<a href="https://www.biorxiv.org/content/early/2017/11/07/159731.full.pdf">pdf</a>]
+                    [<a href="./bib/plos2017.bib">bibtex</a>]
+                    [<a href="./pdf/ohbm2017poster.pdf">poster</a>]
+                    [<a href="./pdf/c3s2017slides.pdf">slides</a>]
+                    [<a href="https://github.com/pactools/pactools">code</a>]
+                  </div>
+                  <!-- NIPS 2017 -->
+                  <div class="pub proceeding">
+                    <div class="pub_title">
+                      <a href="https://papers.nips.cc/paper/6710-learning-the-morphology-of-brain-signals-using-alpha-stable-convolutional-sparse-coding">Learning the morphology of brain signals using alpha-stable convolutional sparse coding</a>
+                    </div>
+                    <div class="pub_author">
+                      Mainak Jas, Tom Dupré la Tour, Umut Şimşekli, Alexandre Gramfort
+                    </div>
+                    <div class="pub_journal">
+                      Advances in Neural Information Processing Systems (NIPS), 2017
+                    </div>
+                    [<a href="https://arxiv.org/pdf/1705.08006v2.pdf">pdf</a>]
+                    [<a href="./bib/nips2017.bib">bibtex</a>]
+                    [<a href="https://github.com/alphacsc/alphacsc">code</a>]
+                  </div>
+                  <!-- ICASSP 2017 -->
+                  <div class="pub proceeding">
+                    <div class="pub_title">
+                      <a href="http://ieeexplore.ieee.org/document/7952968/">Parametric estimation of spectrum driven by an exogenous signal</a>
+                    </div>
+                    <div class="pub_author">
+                      Tom Dupré la Tour, Yves Grenier, Alexandre Gramfort
+                    </div>
+                    <div class="pub_journal">
+                      IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2017
+                    </div>
+                    [<a href="https://hal.archives-ouvertes.fr/hal-01448603v2/document">pdf</a>]
+                    [<a href="./bib/icassp2017.bib">bibtex</a>]
+                    [<a href="./pdf/icassp2017poster.pdf">poster</a>]
+                    [<a href="https://github.com/pactools/pactools">code</a>]
+                  </div>
+                </div>
+              </div>
             </div>
-            <a href="http://enseignements.telecom-paristech.fr/cours.php?id=2172&langue=EN">SIGMA202a</a> - Télécom ParisTech (M1)
-            <p></p>
-
-            <div class="pub_title">
-              Advisor for a year-long innovative team project
+            <!-- _____________________Talks_____________________ -->
+            <div class="tab_content" id="tab_content_talks">
+              <h2>Talks</h2>
+              <!-- <hr align="left" class="hr2" /> -->
+              <div class="row">
+                <div class="col-md-1">
+                  <h3>2017</h3>
+                </div>
+                <div class="col-md-11">
+                  <!-- C3S 2017 -->
+                  <div class="pub">
+                    <div class="pub_title">
+                      <a href="http://www.biorxiv.org/content/early/2017/07/06/159731">Non-linear auto-regressive models for cross-frequency coupling in neural time series</a>
+                    </div>
+                    <div class="pub_author">
+                      Tom Dupré la Tour, Lucille Tallot, Laetitia Grabot, Valérie Doyere, Virginie van Wassenhove, Yves Grenier, Alexandre Gramfort
+                    </div>
+                    <div class="pub_journal">
+                      Coupling and Causality in Complex Systems (C3S), 2017
+                    </div>
+                    [<a href="./pdf/c3s2017slides.pdf">slides</a>]
+                  </div>
+                  <!-- OHBM 2017 -->
+                  <div class="pub">
+                    <div class="pub_title">
+                      <a href="https://files.aievolution.com/hbm1701/abstracts/38101/1759_DuprlaTour.pdf">Parametric models of phase-amplitude coupling</a>
+                    </div>
+                    <div class="pub_author">
+                      Tom Dupré la Tour, Lucille Tallot, Laetitia Grabot, Valérie Doyere, Virginie van Wassenhove, Yves Grenier, Alexandre Gramfort
+                    </div>
+                    <div class="pub_journal">
+                      Organization for Human Brain Mapping (OHBM) annual meeting, 2017
+                    </div>
+                    [<a href="./pdf/ohbm2017poster.pdf">poster</a>]
+                  </div>
+                  <!-- BASP 2017 -->
+                  <div class="pub">
+                    <div class="pub_title">
+                      <a href="http://www.baspfrontiers.org/proceedings.php">Parametric models of phase-amplitude coupling in neural time series</a>
+                    </div>
+                    <div class="pub_author">
+                      Tom Dupré la Tour, Yves Grenier, Alexandre Gramfort
+                    </div>
+                    <div class="pub_journal">
+                      International Biomedical and Astronomical Signal Processing (BASP) Frontiers workshop, 2017
+                    </div>
+                    [<a href="./pdf/basp2017poster.pdf">poster</a>]
+                  </div>
+                </div>
+                <div class="col-md-1">
+                  <h3>2016</h3>
+                </div>
+                <div class="col-md-11">
+                  <!-- Pydata Paris 2017 -->
+                  <div class="pub">
+                    <div class="pub_title">
+                      <a href="https://pydata.org/paris2016/">Training with open-source</a>
+                    </div>
+                    <div class="pub_author">
+                      Tom Dupré la Tour
+                    </div>
+                    <div class="pub_journal">
+                      PyData Paris, scikit-learn day, 2016
+                    </div>
+                    [<a href="./pdf/pydata2016slides.pdf">slides</a>]
+                  </div>
+                </div>
+              </div>
             </div>
-            <a href="http://enseignements.telecom-paristech.fr/cours.php?id=1622&langue=EN">PACT</a> - Télécom ParisTech (L3)
-            <p></p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- _____________________Education_____________________ -->
-      <div class="tab_content" id="tab_content_education">
-        <h2>Education</h2>
-        <!-- <hr align="left" class="hr2" /> -->
-
-        <div class="row">
-          <div class="col-md-2">
-            <h3>2015-2018?</h3>
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              <a href="https://en.wikipedia.org/wiki/T%C3%A9l%C3%A9com_ParisTec">Télécom ParisTech</a> - PhD in Signal Processing for Neuroscience
+            <!-- _____________________Software_____________________ -->
+            <div class="tab_content" id="tab_content_software">
+              <h2>Software</h2>
+              <!-- <hr align="left" class="hr2" /> -->
+              <div class="row">
+                <div class="col-md-2">
+                  <h3><a href="http://scikit-learn.org/stable/">scikit-learn</a></h3>
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    Machine Learning in Python - Core developer
+                  </div>
+                  Implementation of optimization algorithms (SAG, cd-NMF, mu-NMF), library maintenance.
+                  <p></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <h3><a href="https://github.com/pactools/pactools">pactools</a></h3>
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    Phase amplitude coupling (PAC) in Python - Main developer
+                  </div>
+                  Estimation of PAC in neural time series. In particular, it implements driven auto-regressive (DAR) models.
+                  <p></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <h3><a href="https://github.com/alphacsc/alphacsc">alphacsc</a></h3>
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    Convolutional dictionary learning for noisy signals using αCSC in Python - Core developer
+                  </div>
+                  αCSC is a model of convolutional sparse coding with an α-stable distribution to handle heavy-tailed noise.
+                  <p></p>
+                </div>
+              </div>
             </div>
-            Thesis: Non-linear auto-regressive models for the analysis of M/EEG signals induced by speech or music. <br> Advised by Alexandre Gramfort and Yves Grenier
-            <p></p>
-          </div>
-
-          <div class="col-md-2">
-            <h3>2013-2015</h3>
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique_F%C3%A9d%C3%A9rale_de_Lausanne">EPFL</a> - Master in Information Technology
+            <!-- _____________________Experience_____________________ -->
+            <div class="tab_content" id="tab_content_experience">
+              <h2>Experience</h2>
+              <!-- <hr align="left" class="hr2" /> -->
+              <div class="row">
+                <div class="col-md-2">
+                  <h3>2015</h3>
+                  (5 months)
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    Research developer at <a href="https://en.wikipedia.org/wiki/T%C3%A9l%C3%A9com_ParisTech">Telecom ParisTech</a>
+                  </div>
+                  Development of <a href="https://en.wikipedia.org/wiki/Scikit-learn">scikit-learn</a>, an open source machine learning library in python.<br> Development of SAG and NMF algorithms, library maintenance.
+                  <p></p>
+                </div>
+                <div class="col-md-2">
+                  <h3>2014 </h3>
+                  (6 months)
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    Research intern at <a href="https://en.wikipedia.org/wiki/DxO_Labs">DxO Labs</a>
+                  </div>
+                  Image processing research on motion deblurring.<br> Literature review, prototyping on Matlab, state of the art improvement (not published).
+                  <p></p>
+                </div>
+                <div class="col-md-2">
+                  <h3>2013</h3>
+                  (3 months)
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    Research intern at <a href="https://fr.wikipedia.org/wiki/Institut_d'%C3%A9lectronique_fondamentale">Institut d'Electronique Fondamentale</a>
+                  </div>
+                  Research on a new calculus paradigm using stochastic binary signals.<br> Matlab simulations and implementation of these gates with analogic CMOS circuit (with Cadence).<br>
+                  <i>Summa cum laude</i> from Ecole polytechnique (top 10%)
+                  <p></p>
+                </div>
+                <div class="col-md-2">
+                  <h3>2011</h3>
+                  (7 months)
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    Full time first responder at <a href="https://en.wikipedia.org/wiki/Paris_Fire_Brigade">Paris Fire Brigade</a>
+                  </div>
+                  Lead a first aiders unit at Paris Fire Brigade.<br> Decision making in critical situations (childbirth, cardiac arrests, ...)
+                  <p></p>
+                </div>
+              </div>
             </div>
-            Signal Processing, Image Processing, Video compression, Machine Learning, Distributed Information Systems, Wireless Transmission Algorithms, Microwaves, Photonics. <br> Research project on Human Echolocation.
-            <p></p>
-          </div>
-
-          <div class="col-md-2">
-            <h3>2010-2013</h3>
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique">Ecole polytechnique</a> - Engineer degree (Master)
+            <!-- _____________________Teaching_____________________ -->
+            <div class="tab_content" id="tab_content_teaching">
+              <h2>Teaching</h2>
+              <!-- <hr align="left" class="hr2" /> -->
+              <div class="row">
+                <div class="col-md-2">
+                  <h3>2016-2017</h3>
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    Practical datascience
+                  </div>
+                  <a href="http://datascience-x-master-paris-saclay.fr/le-master/structure-des-enseignements/">One-week data camp</a> - Université Paris-Saclay (M2)
+                  <p></p>
+                  <div class="pub_title">
+                    Linear time series
+                  </div>
+                  <a href="http://enseignements.telecom-paristech.fr/cours.php?id=2172&langue=EN">SIGMA202a</a> - Télécom ParisTech (M1)
+                  <p></p>
+                  <div class="pub_title">
+                    Advisor for a year-long innovative team project
+                  </div>
+                  <a href="http://enseignements.telecom-paristech.fr/cours.php?id=1622&langue=EN">PACT</a> - Télécom ParisTech (L3)
+                  <p></p>
+                </div>
+              </div>
             </div>
-            1st et 2nd years : cross-curricular formation, with Mathematics, Physics and Informatics. <br>3rd year : specialization in Electrical Engineering : Computer Architecture, Printed Circuit Board Design, Semiconductor Physics, Photovoltaic, Signal
-            Processing, Opto-Electronic.
-            <p></p>
-          </div>
-
-          <div class="col-md-2">
-            <h3>2008-2010</h3>
-          </div>
-          <div class="col-md-10">
-            <div class="pub_title">
-              <a href="https://en.wikipedia.org/wiki/Classe_préparatoire_aux_grandes_écoles">CPGE at Lycée Saint Louis</a> - Undergraduate study
+            <!-- _____________________Education_____________________ -->
+            <div class="tab_content" id="tab_content_education">
+              <h2>Education</h2>
+              <!-- <hr align="left" class="hr2" /> -->
+              <div class="row">
+                <div class="col-md-2">
+                  <h3>2015-2018?</h3>
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    <a href="https://en.wikipedia.org/wiki/T%C3%A9l%C3%A9com_ParisTec">Télécom ParisTech</a> - PhD in Signal Processing for Neuroscience
+                  </div>
+                  Thesis: Non-linear auto-regressive models for the analysis of M/EEG signals induced by speech or music. <br> Advised by Alexandre Gramfort and Yves Grenier
+                  <p></p>
+                </div>
+                <div class="col-md-2">
+                  <h3>2013-2015</h3>
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique_F%C3%A9d%C3%A9rale_de_Lausanne">EPFL</a> - Master in Information Technology
+                  </div>
+                  Signal Processing, Image Processing, Video compression, Machine Learning, Distributed Information Systems, Wireless Transmission Algorithms, Microwaves, Photonics. <br> Research project on Human Echolocation.
+                  <p></p>
+                </div>
+                <div class="col-md-2">
+                  <h3>2010-2013</h3>
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    <a href="https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique">Ecole polytechnique</a> - Engineer degree (Master)
+                  </div>
+                  1st et 2nd years : cross-curricular formation, with Mathematics, Physics and Informatics. <br>3rd year : specialization in Electrical Engineering : Computer Architecture, Printed Circuit Board Design, Semiconductor Physics, Photovoltaic, Signal
+                  Processing, Opto-Electronic.
+                  <p></p>
+                </div>
+                <div class="col-md-2">
+                  <h3>2008-2010</h3>
+                </div>
+                <div class="col-md-10">
+                  <div class="pub_title">
+                    <a href="https://en.wikipedia.org/wiki/Classe_préparatoire_aux_grandes_écoles">CPGE at Lycée Saint Louis</a> - Undergraduate study
+                  </div>
+                  A 2-year intensive undergraduate program for admission to France’s top engineering schools. <br>Mathematics, Physics.
+                  <p></p>
+                </div>
+              </div>
             </div>
-            A 2-year intensive undergraduate program for admission to France’s top engineering schools. <br>Mathematics, Physics.
-            <p></p>
           </div>
-</div>
-
-
         </div>
       </div>
     </div>
-
     </div>
-  </div>
-</div>
-
-<script src="script.js"></script>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
