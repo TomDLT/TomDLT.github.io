@@ -42,3 +42,4 @@ if (hash == '')
     change_tab(current_tab);
 else
     change_tab(hash);
+
