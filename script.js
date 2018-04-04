@@ -61,9 +61,8 @@ function load_blog_post(filename)
     document.getElementById('includedContent').style['display'] = 'block';
 
     window.location.hash = filename;
-    protocol = window.location.protocol;
     $(document).ready(function() {
-        var path = protocol + "//tomdlt.github.io/blog/"
+        var path = "https://tomdlt.github.io/blog/"
         $("#includedContent").load(path + filename);
     });
 }
