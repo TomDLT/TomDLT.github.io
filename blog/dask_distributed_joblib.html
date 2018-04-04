@@ -1,310 +1,423 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>dask_distributed_joblib.md</title><script type="text/javascript">
-//<![CDATA[
-window.__cfRocketOptions = {byc:0,p:0,petok:"7095454063fa4bc8ee1f4ab0cdf07de61587749a-1521499244-1800"};
-//]]>
-</script>
-<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/935cb224/cloudflare-static/rocket.min.js"></script>
-<link type="text/css" media="screen" href="blog.css" rel="stylesheet">
-<style></style></head><body id="preview">
-<h1><a id="Tutorial_How_to_use_daskdistributed_to_manage_a_pool_of_workers_on_multiple_machines_and_use_them_in_joblib_0"></a>Tutorial: How to use <code>dask-distributed</code> to manage a pool of workers on multiple machines, and use them in <code>joblib</code></h1>
-<p>In parallel computing, an embarrassingly parallel problem is one which is obviously decomposable into many identical but separate subtasks. For such tasks, <code>joblib</code> is a very easy-to-use Python package, which allows to distribute work on multiple procesors. It is used for instance internally in <code>scikit-learn</code> for parallel grid search and cross-validation. <code>joblib</code> makes parallel computing ridiculously easy (<a href="https://pythonhosted.org/joblib/index.html">see the doc</a>):</p>
-<pre><code class="language-py"><span class="hljs-keyword">from</span> joblib <span class="hljs-keyword">import</span> Parallel, delayed
-<span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> sqrt
-result = Parallel(n_jobs=<span class="hljs-number">1</span>)(delayed(sqrt)(i**<span class="hljs-number">2</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>))
-<span class="hljs-comment"># result = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]</span>
-</code></pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>dask_distributed_joblib.md - Grip</title>
+  <link rel="icon" href="/cal/homes/tdupre/work/src/tomdlt/static/favicon.ico" />
+  <link rel="stylesheet" href="/cal/homes/tdupre/work/src/tomdlt/asset/frameworks-7d09971c51977b60c6626362003ef38a.css" />
+  <link rel="stylesheet" href="/cal/homes/tdupre/work/src/tomdlt/asset/github-afc457d1182f9759fd46a92d0209734c.css" />
+  <link rel="stylesheet" href="/cal/homes/tdupre/work/src/tomdlt/asset/site-83dc1f7ebc9c7461fe1eab799b56c4c4.css" />
+  <link rel="stylesheet" href="/cal/homes/tdupre/work/src/tomdlt/static/octicons/octicons.css" />
+  <style>
+    /* Page tweaks */
+    .preview-page {
+      margin-top: 64px;
+    }
+    /* User-content tweaks */
+    .timeline-comment-wrapper > .timeline-comment:after,
+    .timeline-comment-wrapper > .timeline-comment:before {
+      content: none;
+    }
+    /* User-content overrides */
+    .discussion-timeline.wide {
+      width: 920px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div id="preview-page" class="preview-page" data-autorefresh-url="">
+
+    
+
+      <div role="main" class="main-content">
+        <div class="container new-discussion-timeline experiment-repo-nav">
+          <div class="repository-content">
+            <div id="readme" class="readme boxed-group clearfix announce instapaper_body md">
+              
+                <h3>
+                  <span class="octicon octicon-book"></span>
+                  dask_distributed_joblib.md
+                </h3>
+              
+              <article class="markdown-body entry-content" itemprop="text" id="grip-content">
+                <h1>
+<a id="user-content-tutorial-how-to-use-dask-distributed-to-manage-a-pool-of-workers-on-multiple-machines-and-use-them-in-joblib" class="anchor" href="#tutorial-how-to-use-dask-distributed-to-manage-a-pool-of-workers-on-multiple-machines-and-use-them-in-joblib" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tutorial: How to use <code>dask-distributed</code> to manage a pool of workers on multiple machines, and use them in <code>joblib</code>
+</h1>
+<p>In parallel computing, an embarrassingly parallel problem is one which is obviously decomposable into many identical but separate subtasks. For such tasks, <code>joblib</code> is a very easy-to-use Python package, which allows to distribute work on multiple procesors. It is used for instance internally in <code>scikit-learn</code> for parallel grid search and cross-validation. <code>joblib</code> makes parallel computing ridiculously easy (<a href="https://pythonhosted.org/joblib/index.html" rel="nofollow">see the doc</a>):</p>
+<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> joblib <span class="pl-k">import</span> Parallel, delayed
+<span class="pl-k">from</span> math <span class="pl-k">import</span> sqrt
+result <span class="pl-k">=</span> Parallel(<span class="pl-v">n_jobs</span><span class="pl-k">=</span><span class="pl-c1">1</span>)(delayed(sqrt)(i<span class="pl-k">**</span><span class="pl-c1">2</span>) <span class="pl-k">for</span> i <span class="pl-k">in</span> <span class="pl-c1">range</span>(<span class="pl-c1">10</span>))
+<span class="pl-c"><span class="pl-c">#</span> result = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]</span></pre></div>
 <p>However, <code>joblib</code> is limited to local processors, which means it is easy to make full use of an 80-core cluster, but it is more complicated to distribute tasks on (for example) the 40 desktops of an university lab room, on which you might have a direct SSH access.</p>
-<p>But recently, <code>dask-distributed</code> implemented a <code>joblib</code> backend, which makes it very easy to use if you are familiar with <code>joblib</code>.<br>
-The cool part is that your python script will (almost) not change.<br>
+<p>But recently, <code>dask-distributed</code> implemented a <code>joblib</code> backend, which makes it very easy to use if you are familiar with <code>joblib</code>.
+The cool part is that your python script will (almost) not change.
 Here are the details.</p>
-<h2><a id="Install_17"></a>Install</h2>
+<h2>
+<a id="user-content-install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
 <p>First of all, you will need to install the following packages:</p>
-<pre><code class="language-console">conda install dask distributed -c conda-forge
-conda install bokeh
-pip install paramiko joblib
-</code></pre>
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">conda install dask distributed -c conda-forge</span>
+<span class="pl-c1">conda install bokeh</span>
+<span class="pl-c1">pip install paramiko joblib</span></pre></div>
 <ul>
-<li><code>dask</code> is a flexible parallel computing library.</li>
-<li><code>dask.distributed</code> is a lightweight library for distributed computing.</li>
-<li><code>bokeh</code> is an interactive visualization library.</li>
-<li><code>paramiko</code> is an implementation of the SSHv2 protocol.</li>
-<li><code>joblib</code> is a set of tools to provide lightweight pipelining.</li>
+<li>
+<code>dask</code> is a flexible parallel computing library.</li>
+<li>
+<code>dask.distributed</code> is a lightweight library for distributed computing.</li>
+<li>
+<code>bokeh</code> is an interactive visualization library.</li>
+<li>
+<code>paramiko</code> is an implementation of the SSHv2 protocol.</li>
+<li>
+<code>joblib</code> is a set of tools to provide lightweight pipelining.</li>
 </ul>
-<h2><a id="How_to_deal_with_passwords_in_daskssh_32"></a>How to deal with passwords in <code>dask-ssh</code></h2>
-<p>In short, <code>dask-ssh</code> is the command you need, and it is available after installing <code>dask-distributed</code>. However, the connection to the servers may require a password, which you don’t want to type every time you start your script, and definetely not for each one of the servers. Here is one way to handle this issue:</p>
+<h2>
+<a id="user-content-how-to-deal-with-passwords-in-dask-ssh" class="anchor" href="#how-to-deal-with-passwords-in-dask-ssh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to deal with passwords in <code>dask-ssh</code>
+</h2>
+<p>In short, <code>dask-ssh</code> is the command you need, and it is available after installing <code>dask-distributed</code>. However, the connection to the servers may require a password, which you don't want to type every time you start your script, and definetely not for each one of the servers. Here is one way to handle this issue:</p>
 <ol>
 <li>First, you need a ssh key. Check if there is already a ssh key (called e.g. <code>id_rsa</code> and <code>id_rsa.pub</code>) in your machine:</li>
 </ol>
-<pre><code class="language-console">ls -a ~/.ssh
-</code></pre>
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">ls -a ~/.ssh</span></pre></div>
 <ol start="2">
 <li>If there is a ssh key and you know its pass-phrase, use it. Otherwise, create a ssh key with:</li>
 </ol>
-<pre><code class="language-console">ssh-keygen
-</code></pre>
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">ssh-keygen</span></pre></div>
 <ol start="3">
 <li>Then add your public key to all your distant servers (e.g. for me <code>lame10</code> and <code>lame11</code> with my username <code>tdupre</code>):</li>
 </ol>
-<pre><code class="language-console">ssh-copy-id tdupre@lame10
-ssh-copy-id tdupre@lame11
-</code></pre>
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">ssh-copy-id tdupre@lame10</span>
+<span class="pl-c1">ssh-copy-id tdupre@lame11</span></pre></div>
 <ol start="4">
 <li>Start an ssh-agent in the background:</li>
 </ol>
-<pre><code class="language-console">eval &quot;$(ssh-agent -s)&quot;
-</code></pre>
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">eval "$(ssh-agent -s)"</span></pre></div>
 <ol start="5">
 <li>Add your private key to the ssh-agent:</li>
 </ol>
-<pre><code class="language-console">ssh-add ~/.ssh/id_rsa
-</code></pre>
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">ssh-add ~/.ssh/id_rsa</span></pre></div>
 <ol start="6">
 <li>Test that the connection to your server is now password-free:</li>
 </ol>
-<pre><code class="language-console">ssh tdupre@lame10
-</code></pre>
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">ssh tdupre@lame10</span></pre></div>
 <ol start="7">
 <li>Tadaaa ! You will have to repete steps 4 and 5 in every terminal in which you want to run <code>dask-ssh</code>.</li>
 </ol>
-<h2><a id="How_to_create_the_scheduler_and_the_workers_in_each_server_75"></a>How to create the scheduler and the workers in each server</h2>
-<p>The scheduler is the process which receives the work from <code>joblib</code>, and dispatches it to the workers. The workers are the processes on the distant servers which are going to perform the tasks.<br>
+<h2>
+<a id="user-content-how-to-create-the-scheduler-and-the-workers-in-each-server" class="anchor" href="#how-to-create-the-scheduler-and-the-workers-in-each-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to create the scheduler and the workers in each server</h2>
+<p>The scheduler is the process which receives the work from <code>joblib</code>, and dispatches it to the workers. The workers are the processes on the distant servers which are going to perform the tasks.
 To create the scheduler and the workers, all you need is <code>dask-ssh</code>:</p>
-<pre><code class="language-console">dask-ssh \
-    --scheduler localhost \
-    --nprocs 1 \
-    --nthreads 1 \
-    --ssh-username tdupre \
-    --ssh-private-key ~/.ssh/id_rsa \
-    lame10 lame11
-</code></pre>
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">dask-ssh \</span>
+<span class="pl-c1">    --scheduler localhost \</span>
+<span class="pl-c1">    --nprocs 1 \</span>
+<span class="pl-c1">    --nthreads 1 \</span>
+<span class="pl-c1">    --ssh-username tdupre \</span>
+<span class="pl-c1">    --ssh-private-key ~/.ssh/id_rsa \</span>
+<span class="pl-c1">    lame10 lame11</span></pre></div>
 <p><strong>Remarks:</strong></p>
 <ul>
-<li><code>tdupre</code> is my username, probably not yours.</li>
-<li><code>localhost</code> can be changed to any IP address, to host the scheduler.</li>
-<li><code>lame10 lame11</code> is my list of servers were I want some workers. You probably also need to change it.</li>
+<li>
+<code>tdupre</code> is my username, probably not yours.</li>
+<li>
+<code>localhost</code> can be changed to any IP address, to host the scheduler.</li>
+<li>
+<code>lame10 lame11</code> is my list of servers were I want some workers. You probably also need to change it.</li>
 <li>You can also give a list of server in a file: <code>--hostfile list_of_server.txt</code>, where <code>list_of_server.txt</code> contains:</li>
 </ul>
-<pre><code class="language-txt">lame10
+<pre lang="txt"><code>lame10
 lame11
 </code></pre>
-<h2><a id="How_to_have_a_nice_overview_of_your_workers_102"></a>How to have a nice overview of your workers</h2>
+<h2>
+<a id="user-content-how-to-have-a-nice-overview-of-your-workers" class="anchor" href="#how-to-have-a-nice-overview-of-your-workers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to have a nice overview of your workers</h2>
 <p>You can connect to a webpage to have a nice overview of your workers:</p>
-<pre><code class="language-console">http://localhost:8787/status
-</code></pre>
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">http://localhost:8787/status</span></pre></div>
 <p>By the way, this is why you need to install <code>bokeh</code>.</p>
-<h2><a id="How_to_use_this_scheduler_with_joblib_112"></a>How to use this scheduler with <code>joblib</code></h2>
+<h2>
+<a id="user-content-how-to-use-this-scheduler-with-joblib" class="anchor" href="#how-to-use-this-scheduler-with-joblib" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use this scheduler with <code>joblib</code>
+</h2>
 <p>Now the cool part is that you barely have to update your joblib scripts ! Here are some examples.</p>
 <p><strong>Minimal API example:</strong></p>
-<pre><code class="language-python"><span class="hljs-keyword">import</span> distributed.joblib  <span class="hljs-comment"># noqa</span>
-<span class="hljs-keyword">from</span> joblib <span class="hljs-keyword">import</span> parallel_backend
+<div class="highlight highlight-source-python"><pre><span class="pl-k">import</span> distributed.joblib  <span class="pl-c"><span class="pl-c">#</span> noqa</span>
+<span class="pl-k">from</span> joblib <span class="pl-k">import</span> parallel_backend
 
-<span class="hljs-keyword">with</span> parallel_backend(<span class="hljs-string">'dask.distributed'</span>,
-                      scheduler_host=<span class="hljs-string">'localhost:8786'</span>):
-    <span class="hljs-keyword">pass</span>  <span class="hljs-comment"># your script using joblib</span>
-</code></pre>
+<span class="pl-k">with</span> parallel_backend(<span class="pl-s"><span class="pl-pds">'</span>dask.distributed<span class="pl-pds">'</span></span>,
+                      <span class="pl-v">scheduler_host</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>localhost:8786<span class="pl-pds">'</span></span>):
+    <span class="pl-k">pass</span>  <span class="pl-c"><span class="pl-c">#</span> your script using joblib</span></pre></div>
 <p><strong>Example with sklearn:</strong></p>
-<pre><code class="language-python"><span class="hljs-keyword">import</span> distributed.joblib  <span class="hljs-comment"># noqa</span>
-<span class="hljs-comment"># scikit-learn bundles joblib, so you need to import from</span>
-<span class="hljs-comment"># `sklearn.externals.joblib` instead of `joblib` directly</span>
-<span class="hljs-keyword">from</span> sklearn.externals.joblib <span class="hljs-keyword">import</span> parallel_backend
-<span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_digits
-<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> RandomizedSearchCV
-<span class="hljs-keyword">from</span> sklearn.svm <span class="hljs-keyword">import</span> SVC
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<div class="highlight highlight-source-python"><pre><span class="pl-k">import</span> distributed.joblib  <span class="pl-c"><span class="pl-c">#</span> noqa</span>
+<span class="pl-c"><span class="pl-c">#</span> scikit-learn bundles joblib, so you need to import from</span>
+<span class="pl-c"><span class="pl-c">#</span> `sklearn.externals.joblib` instead of `joblib` directly</span>
+<span class="pl-k">from</span> sklearn.externals.joblib <span class="pl-k">import</span> parallel_backend
+<span class="pl-k">from</span> sklearn.datasets <span class="pl-k">import</span> load_digits
+<span class="pl-k">from</span> sklearn.model_selection <span class="pl-k">import</span> RandomizedSearchCV
+<span class="pl-k">from</span> sklearn.svm <span class="pl-k">import</span> <span class="pl-c1">SVC</span>
+<span class="pl-k">import</span> numpy <span class="pl-k">as</span> np
 
-digits = load_digits()
+digits <span class="pl-k">=</span> load_digits()
 
-param_space = {
-    <span class="hljs-string">'C'</span>: np.logspace(-<span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">13</span>),
-    <span class="hljs-string">'gamma'</span>: np.logspace(-<span class="hljs-number">8</span>, <span class="hljs-number">8</span>, <span class="hljs-number">17</span>),
-    <span class="hljs-string">'tol'</span>: np.logspace(-<span class="hljs-number">4</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">4</span>),
-    <span class="hljs-string">'class_weight'</span>: [<span class="hljs-keyword">None</span>, <span class="hljs-string">'balanced'</span>],
+param_space <span class="pl-k">=</span> {
+    <span class="pl-s"><span class="pl-pds">'</span>C<span class="pl-pds">'</span></span>: np.logspace(<span class="pl-k">-</span><span class="pl-c1">6</span>, <span class="pl-c1">6</span>, <span class="pl-c1">13</span>),
+    <span class="pl-s"><span class="pl-pds">'</span>gamma<span class="pl-pds">'</span></span>: np.logspace(<span class="pl-k">-</span><span class="pl-c1">8</span>, <span class="pl-c1">8</span>, <span class="pl-c1">17</span>),
+    <span class="pl-s"><span class="pl-pds">'</span>tol<span class="pl-pds">'</span></span>: np.logspace(<span class="pl-k">-</span><span class="pl-c1">4</span>, <span class="pl-k">-</span><span class="pl-c1">1</span>, <span class="pl-c1">4</span>),
+    <span class="pl-s"><span class="pl-pds">'</span>class_weight<span class="pl-pds">'</span></span>: [<span class="pl-c1">None</span>, <span class="pl-s"><span class="pl-pds">'</span>balanced<span class="pl-pds">'</span></span>],
 }
 
-model = SVC(kernel=<span class="hljs-string">'rbf'</span>)
-search = RandomizedSearchCV(model, param_space, cv=<span class="hljs-number">3</span>, n_iter=<span class="hljs-number">150</span>, verbose=<span class="hljs-number">10</span>, n_jobs=-<span class="hljs-number">1</span>)
+model <span class="pl-k">=</span> SVC(<span class="pl-v">kernel</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>rbf<span class="pl-pds">'</span></span>)
+search <span class="pl-k">=</span> RandomizedSearchCV(model, param_space, <span class="pl-v">cv</span><span class="pl-k">=</span><span class="pl-c1">3</span>, <span class="pl-v">n_iter</span><span class="pl-k">=</span><span class="pl-c1">150</span>, <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">10</span>, <span class="pl-v">n_jobs</span><span class="pl-k">=</span><span class="pl-k">-</span><span class="pl-c1">1</span>)
 
-<span class="hljs-keyword">with</span> parallel_backend(<span class="hljs-string">'dask.distributed'</span>, scheduler_host=<span class="hljs-string">'localhost:8786'</span>):
-    search.fit(digits.data, digits.target)
-</code></pre>
+<span class="pl-k">with</span> parallel_backend(<span class="pl-s"><span class="pl-pds">'</span>dask.distributed<span class="pl-pds">'</span></span>, <span class="pl-v">scheduler_host</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>localhost:8786<span class="pl-pds">'</span></span>):
+    search.fit(digits.data, digits.target)</pre></div>
 <p><strong>Remarks:</strong></p>
 <ul>
 <li>Be sure to check the task stream in <code>http://localhost:8787/status</code>.</li>
 <li>Note also that the verbose is output on the scheduler terminal, not in your script terminal.</li>
 </ul>
 <p><strong>Other pure joblib example:</strong></p>
-<pre><code class="language-python"><span class="hljs-keyword">import</span> time
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> distributed.joblib  <span class="hljs-comment"># noqa</span>
-<span class="hljs-keyword">from</span> joblib <span class="hljs-keyword">import</span> parallel_backend, Parallel, delayed
+<div class="highlight highlight-source-python"><pre><span class="pl-k">import</span> time
+<span class="pl-k">import</span> numpy <span class="pl-k">as</span> np
+<span class="pl-k">import</span> distributed.joblib  <span class="pl-c"><span class="pl-c">#</span> noqa</span>
+<span class="pl-k">from</span> joblib <span class="pl-k">import</span> parallel_backend, Parallel, delayed
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(duration)</span>:</span>
+<span class="pl-k">def</span> <span class="pl-en">run</span>(<span class="pl-smi">duration</span>):
     time.sleep(duration)
-    <span class="hljs-keyword">return</span> duration
+    <span class="pl-k">return</span> duration
 
-delayed_run = delayed(run)
+delayed_run <span class="pl-k">=</span> delayed(run)
 
-<span class="hljs-keyword">with</span> parallel_backend(<span class="hljs-string">'dask.distributed'</span>,
-                      scheduler_host=<span class="hljs-string">'localhost:8786'</span>):
-    results = Parallel()(delayed_run(duration)
-                         <span class="hljs-keyword">for</span> duration <span class="hljs-keyword">in</span> np.arange(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">0.1</span>))
-    print(np.array(results))
-</code></pre>
-<p>See more details in the <a href="https://distributed.readthedocs.io/en/latest/joblib.html">dask-distributed doc</a></p>
-<h2><a id="How_to_generate_figures_in_a_distant_worker_183"></a>How to generate figures in a distant worker</h2>
-<p>As <code>paramiko</code> does not handle easily X11-forwarding (like in <code>shh -X</code>), we can’t display a figure in a distant worker. However, with <code>matplotlib</code>, we can create a figure in a non-interactive backend, and save the figure with <code>fig.savefig('save_name.png')</code>.</p>
+<span class="pl-k">with</span> parallel_backend(<span class="pl-s"><span class="pl-pds">'</span>dask.distributed<span class="pl-pds">'</span></span>,
+                      <span class="pl-v">scheduler_host</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>localhost:8786<span class="pl-pds">'</span></span>):
+    results <span class="pl-k">=</span> Parallel()(delayed_run(duration)
+                         <span class="pl-k">for</span> duration <span class="pl-k">in</span> np.arange(<span class="pl-c1">1</span>, <span class="pl-c1">5</span>, <span class="pl-c1">0.1</span>))
+    <span class="pl-c1">print</span>(np.array(results))</pre></div>
+<p>See more details in the <a href="https://distributed.readthedocs.io/en/latest/joblib.html" rel="nofollow">dask-distributed doc</a></p>
+<h2>
+<a id="user-content-how-to-generate-figures-in-a-distant-worker" class="anchor" href="#how-to-generate-figures-in-a-distant-worker" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to generate figures in a distant worker</h2>
+<p>As <code>paramiko</code> does not handle easily X11-forwarding (like in <code>shh -X</code>), we can't display a figure in a distant worker. However, with <code>matplotlib</code>, we can create a figure in a non-interactive backend, and save the figure with <code>fig.savefig('save_name.png')</code>.</p>
 <p>To use a non-interactive backend, use this command <em>before</em> importing <code>matplotlib.pyplot</code>:</p>
-<pre><code class="language-python"><span class="hljs-keyword">import</span> matplotlib
-matplotlib.use(<span class="hljs-string">'agg'</span>)
-</code></pre>
-<p>Again, this command works only <em>before</em> importing <code>matplotlib.pyplot</code>.<br>
-However, for some obscure reasons, this may fail.<br>
+<div class="highlight highlight-source-python"><pre><span class="pl-k">import</span> matplotlib
+matplotlib.use(<span class="pl-s"><span class="pl-pds">'</span>agg<span class="pl-pds">'</span></span>)</pre></div>
+<p>Again, this command works only <em>before</em> importing <code>matplotlib.pyplot</code>.
+However, for some obscure reasons, this may fail.
 You may have more luck with this command instead:</p>
-<pre><code class="language-python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-plt.switch_backend(<span class="hljs-string">'agg'</span>)
-</code></pre>
-<h2><a id="Advanced_How_to_create_a_different_number_of_worker_in_each_server_203"></a>Advanced: How to create a different number of worker in each server</h2>
-<p>In the bash command <code>dask-ssh</code>, the number of processes (<code>--nprocs 1</code>) is identical in all servers. To have a different number of processes in each server, we need to customize <code>dask-ssh</code>.<br>
-The command <code>dask-ssh</code> is just a shortcut to a python script, <a href="https://github.com/dask/distributed/blob/master/distributed/cli/dask_ssh.py">dask-ssh.py</a>, so let’s copy it and customize it.</p>
-<p>For instance, let’s assume we want to give the servers as a list of hostnames and integers.</p>
+<div class="highlight highlight-source-python"><pre><span class="pl-k">import</span> matplotlib.pyplot <span class="pl-k">as</span> plt
+plt.switch_backend(<span class="pl-s"><span class="pl-pds">'</span>agg<span class="pl-pds">'</span></span>)</pre></div>
+<h2>
+<a id="user-content-advanced-how-to-create-a-different-number-of-worker-in-each-server" class="anchor" href="#advanced-how-to-create-a-different-number-of-worker-in-each-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Advanced: How to create a different number of worker in each server</h2>
+<p>In the bash command <code>dask-ssh</code>, the number of processes (<code>--nprocs 1</code>) is identical in all servers. To have a different number of processes in each server, we need to customize <code>dask-ssh</code>.
+The command <code>dask-ssh</code> is just a shortcut to a python script, <a href="https://github.com/dask/distributed/blob/master/distributed/cli/dask_ssh.py">dask-ssh.py</a>, so let's copy it and customize it.</p>
+<p>For instance, let's assume we want to give the servers as a list of hostnames and integers.</p>
 <pre><code>localhost 3
 lame10 2
 lame11 10
 </code></pre>
 <p>Each line corresponds to a server and the number of processes we want in this server. We will call the script giving the list in a file: <code>--hostfile list_of_server.txt</code>.</p>
 <p>In <code>dask-ssh.py</code>, the server list is given in the parameter <code>hostnames</code>, so we first modify the parsing to keep the lines intact:</p>
-<pre><code class="language-python"><span class="hljs-keyword">if</span> hostfile:
-    <span class="hljs-keyword">with</span> open(hostfile) <span class="hljs-keyword">as</span> f:
-        hosts = f.readlines()
-    hostnames.extend([h.split() <span class="hljs-keyword">for</span> h <span class="hljs-keyword">in</span> hosts])
-</code></pre>
+<div class="highlight highlight-source-python"><pre><span class="pl-k">if</span> hostfile:
+    <span class="pl-k">with</span> <span class="pl-c1">open</span>(hostfile) <span class="pl-k">as</span> f:
+        hosts <span class="pl-k">=</span> f.readlines()
+    hostnames.extend([h.split() <span class="pl-k">for</span> h <span class="pl-k">in</span> hosts])</pre></div>
 <p>Then, we give an empty list of servers to <code>SSHCluster</code>, and we start the workers manually with <code>start_worker</code>:</p>
-<pre><code class="language-python">c = SSHCluster(scheduler, scheduler_port, [], nthreads, nprocs,
+<div class="highlight highlight-source-python"><pre>c <span class="pl-k">=</span> SSHCluster(scheduler, scheduler_port, [], nthreads, nprocs,
                ssh_username, ssh_port, ssh_private_key, nohost,
                log_directory)
 
-<span class="hljs-comment"># start the workers, giving a specific number of processes if provided</span>
-<span class="hljs-keyword">for</span> hostname <span class="hljs-keyword">in</span> hostnames:
-    <span class="hljs-keyword">if</span> len(hostname) == <span class="hljs-number">1</span>:
-        address = hostname[<span class="hljs-number">0</span>]
-        nprocs = c.nprocs
-    <span class="hljs-keyword">else</span>:
-        address = hostname[<span class="hljs-number">0</span>]
-        <span class="hljs-keyword">try</span>:
-            nprocs = int(hostname[<span class="hljs-number">1</span>])
-        <span class="hljs-keyword">except</span>:
-            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">'Invalid hostname and number of processes %s'</span>
-                             % (hostname, ))
+<span class="pl-c"><span class="pl-c">#</span> start the workers, giving a specific number of processes if provided</span>
+<span class="pl-k">for</span> hostname <span class="pl-k">in</span> hostnames:
+    <span class="pl-k">if</span> <span class="pl-c1">len</span>(hostname) <span class="pl-k">==</span> <span class="pl-c1">1</span>:
+        address <span class="pl-k">=</span> hostname[<span class="pl-c1">0</span>]
+        nprocs <span class="pl-k">=</span> c.nprocs
+    <span class="pl-k">else</span>:
+        address <span class="pl-k">=</span> hostname[<span class="pl-c1">0</span>]
+        <span class="pl-k">try</span>:
+            nprocs <span class="pl-k">=</span> <span class="pl-c1">int</span>(hostname[<span class="pl-c1">1</span>])
+        <span class="pl-k">except</span>:
+            <span class="pl-k">raise</span> <span class="pl-c1">ValueError</span>(<span class="pl-s"><span class="pl-pds">'</span>Invalid hostname and number of processes <span class="pl-c1">%s</span><span class="pl-pds">'</span></span>
+                             <span class="pl-k">%</span> (hostname, ))
     c.workers.append(start_worker(c.logdir, c.scheduler_addr,
                                   c.scheduler_port, address,
                                   c.nthreads, nprocs,
                                   c.ssh_username, c.ssh_port,
-                                  c.ssh_private_key, c.nohost))
-</code></pre>
+                                  c.ssh_private_key, c.nohost))</pre></div>
 <p>Then we simply call the script with <code>python my_dask_ssh.py</code> instead of <code>dask-ssh</code>.</p>
-<p>The full script is given below.</p>
-<pre><code class="language-python"><span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> print_function, division, absolute_import
+<p>The full script is given below (click on <code>Details</code>).</p>
+<details>
+<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> <span class="pl-c1">__future__</span> <span class="pl-k">import</span> print_function, division, absolute_import
 
-<span class="hljs-keyword">from</span> distributed.deploy.ssh <span class="hljs-keyword">import</span> SSHCluster, start_worker
-<span class="hljs-keyword">import</span> click
+<span class="pl-k">from</span> distributed.deploy.ssh <span class="pl-k">import</span> SSHCluster, start_worker
+<span class="pl-k">import</span> click
 
 
-<span class="hljs-decorator">@click.command(</span>
-   help=<span class="hljs-string">"""Launch a distributed cluster over SSH. A 'dask-scheduler'
-   process will run on the first host specified in [HOSTNAMES] or
-   in the hostfile (unless --scheduler is specified explicitly).
-   One or more 'dask-worker' processes will be run each host in
-   [HOSTNAMES] or in the hostfile. Use command line flags to adjust
-   how many dask-worker process are run on each host (--nprocs)
-   and how many cpus are used by each dask-worker process (--nthreads)."""</span>)
-<span class="hljs-decorator">@click.option('--scheduler', default=None, type=str,</span>
-             help=<span class="hljs-string">"Specify scheduler node.  Defaults to first address."</span>)
-<span class="hljs-decorator">@click.option('--scheduler-port', default=8786, type=int,</span>
-             help=<span class="hljs-string">"Specify scheduler port number.  Defaults to port 8786."</span>)
-<span class="hljs-decorator">@click.option('--nthreads', default=0, type=int,</span>
-             help=<span class="hljs-string">"Number of threads per worker process. Defaults to number "</span>
-             <span class="hljs-string">"of cores divided by the number of processes per host."</span>)
-<span class="hljs-decorator">@click.option('--nprocs', default=1, type=int,</span>
-             help=<span class="hljs-string">"Number of worker processes per host.  Defaults to one."</span>)
-<span class="hljs-decorator">@click.argument('hostnames', nargs=-1, type=str)</span>
-<span class="hljs-decorator">@click.option('--hostfile', default=None, type=click.Path(exists=True),</span>
-             help=<span class="hljs-string">"Textfile with hostnames/IP addresses"</span>)
-<span class="hljs-decorator">@click.option('--ssh-username', default=None, type=str,</span>
-             help=<span class="hljs-string">"Username to use when establishing SSH connections."</span>)
-<span class="hljs-decorator">@click.option('--ssh-port', default=22, type=int,</span>
-             help=<span class="hljs-string">"Port to use for SSH connections."</span>)
-<span class="hljs-decorator">@click.option('--ssh-private-key', default=None, type=str,</span>
-             help=<span class="hljs-string">"Private key file to use for SSH connections."</span>)
-<span class="hljs-decorator">@click.option('--nohost', is_flag=True,</span>
-             help=<span class="hljs-string">"Do not pass the hostname to the worker."</span>)
-<span class="hljs-decorator">@click.option('--log-directory', default=None, type=click.Path(exists=True),</span>
-             help=<span class="hljs-string">"Directory to use on all cluster nodes for the output of "</span>
-             <span class="hljs-string">"dask-scheduler and dask-worker commands."</span>)
-<span class="hljs-decorator">@click.pass_context</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">(ctx, scheduler, scheduler_port, hostnames, hostfile, nthreads, nprocs,
-        ssh_username, ssh_port, ssh_private_key, nohost, log_directory)</span>:</span>
-   <span class="hljs-keyword">try</span>:
-       hostnames = list(hostnames)
-       <span class="hljs-keyword">if</span> hostfile:
-           <span class="hljs-keyword">with</span> open(hostfile) <span class="hljs-keyword">as</span> f:
-               hosts = f.readlines()
-           hostnames.extend([h.split() <span class="hljs-keyword">for</span> h <span class="hljs-keyword">in</span> hosts])
+<span class="pl-en">@click.command</span>(
+   <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"""</span>Launch a distributed cluster over SSH. A 'dask-scheduler'</span>
+<span class="pl-s">   process will run on the first host specified in [HOSTNAMES] or</span>
+<span class="pl-s">   in the hostfile (unless --scheduler is specified explicitly).</span>
+<span class="pl-s">   One or more 'dask-worker' processes will be run each host in</span>
+<span class="pl-s">   [HOSTNAMES] or in the hostfile. Use command line flags to adjust</span>
+<span class="pl-s">   how many dask-worker process are run on each host (--nprocs)</span>
+<span class="pl-s">   and how many cpus are used by each dask-worker process (--nthreads).<span class="pl-pds">"""</span></span>)
+<span class="pl-en">@click.option</span>(<span class="pl-s"><span class="pl-pds">'</span>--scheduler<span class="pl-pds">'</span></span>, <span class="pl-v">default</span><span class="pl-k">=</span><span class="pl-c1">None</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-c1">str</span>,
+             <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Specify scheduler node.  Defaults to first address.<span class="pl-pds">"</span></span>)
+<span class="pl-en">@click.option</span>(<span class="pl-s"><span class="pl-pds">'</span>--scheduler-port<span class="pl-pds">'</span></span>, <span class="pl-v">default</span><span class="pl-k">=</span><span class="pl-c1">8786</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-c1">int</span>,
+             <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Specify scheduler port number.  Defaults to port 8786.<span class="pl-pds">"</span></span>)
+<span class="pl-en">@click.option</span>(<span class="pl-s"><span class="pl-pds">'</span>--nthreads<span class="pl-pds">'</span></span>, <span class="pl-v">default</span><span class="pl-k">=</span><span class="pl-c1">0</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-c1">int</span>,
+             <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Number of threads per worker process. Defaults to number <span class="pl-pds">"</span></span>
+             <span class="pl-s"><span class="pl-pds">"</span>of cores divided by the number of processes per host.<span class="pl-pds">"</span></span>)
+<span class="pl-en">@click.option</span>(<span class="pl-s"><span class="pl-pds">'</span>--nprocs<span class="pl-pds">'</span></span>, <span class="pl-v">default</span><span class="pl-k">=</span><span class="pl-c1">1</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-c1">int</span>,
+             <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Number of worker processes per host.  Defaults to one.<span class="pl-pds">"</span></span>)
+<span class="pl-en">@click.argument</span>(<span class="pl-s"><span class="pl-pds">'</span>hostnames<span class="pl-pds">'</span></span>, <span class="pl-v">nargs</span><span class="pl-k">=</span><span class="pl-k">-</span><span class="pl-c1">1</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-c1">str</span>)
+<span class="pl-en">@click.option</span>(<span class="pl-s"><span class="pl-pds">'</span>--hostfile<span class="pl-pds">'</span></span>, <span class="pl-v">default</span><span class="pl-k">=</span><span class="pl-c1">None</span>, <span class="pl-v">type</span><span class="pl-k">=</span>click.Path(<span class="pl-v">exists</span><span class="pl-k">=</span><span class="pl-c1">True</span>),
+             <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Textfile with hostnames/IP addresses<span class="pl-pds">"</span></span>)
+<span class="pl-en">@click.option</span>(<span class="pl-s"><span class="pl-pds">'</span>--ssh-username<span class="pl-pds">'</span></span>, <span class="pl-v">default</span><span class="pl-k">=</span><span class="pl-c1">None</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-c1">str</span>,
+             <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Username to use when establishing SSH connections.<span class="pl-pds">"</span></span>)
+<span class="pl-en">@click.option</span>(<span class="pl-s"><span class="pl-pds">'</span>--ssh-port<span class="pl-pds">'</span></span>, <span class="pl-v">default</span><span class="pl-k">=</span><span class="pl-c1">22</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-c1">int</span>,
+             <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Port to use for SSH connections.<span class="pl-pds">"</span></span>)
+<span class="pl-en">@click.option</span>(<span class="pl-s"><span class="pl-pds">'</span>--ssh-private-key<span class="pl-pds">'</span></span>, <span class="pl-v">default</span><span class="pl-k">=</span><span class="pl-c1">None</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-c1">str</span>,
+             <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Private key file to use for SSH connections.<span class="pl-pds">"</span></span>)
+<span class="pl-en">@click.option</span>(<span class="pl-s"><span class="pl-pds">'</span>--nohost<span class="pl-pds">'</span></span>, <span class="pl-v">is_flag</span><span class="pl-k">=</span><span class="pl-c1">True</span>,
+             <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Do not pass the hostname to the worker.<span class="pl-pds">"</span></span>)
+<span class="pl-en">@click.option</span>(<span class="pl-s"><span class="pl-pds">'</span>--log-directory<span class="pl-pds">'</span></span>, <span class="pl-v">default</span><span class="pl-k">=</span><span class="pl-c1">None</span>, <span class="pl-v">type</span><span class="pl-k">=</span>click.Path(<span class="pl-v">exists</span><span class="pl-k">=</span><span class="pl-c1">True</span>),
+             <span class="pl-v">help</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Directory to use on all cluster nodes for the output of <span class="pl-pds">"</span></span>
+             <span class="pl-s"><span class="pl-pds">"</span>dask-scheduler and dask-worker commands.<span class="pl-pds">"</span></span>)
+<span class="pl-en">@click.pass_context</span>
+<span class="pl-k">def</span> <span class="pl-en">main</span>(<span class="pl-smi">ctx</span>, <span class="pl-smi">scheduler</span>, <span class="pl-smi">scheduler_port</span>, <span class="pl-smi">hostnames</span>, <span class="pl-smi">hostfile</span>, <span class="pl-smi">nthreads</span>, <span class="pl-smi">nprocs</span>,
+        <span class="pl-smi">ssh_username</span>, <span class="pl-smi">ssh_port</span>, <span class="pl-smi">ssh_private_key</span>, <span class="pl-smi">nohost</span>, <span class="pl-smi">log_directory</span>):
+   <span class="pl-k">try</span>:
+       hostnames <span class="pl-k">=</span> <span class="pl-c1">list</span>(hostnames)
+       <span class="pl-k">if</span> hostfile:
+           <span class="pl-k">with</span> <span class="pl-c1">open</span>(hostfile) <span class="pl-k">as</span> f:
+               hosts <span class="pl-k">=</span> f.readlines()
+           hostnames.extend([h.split() <span class="pl-k">for</span> h <span class="pl-k">in</span> hosts])
 
-       <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> scheduler:
-           scheduler = hostnames[<span class="hljs-number">0</span>]
+       <span class="pl-k">if</span> <span class="pl-k">not</span> scheduler:
+           scheduler <span class="pl-k">=</span> hostnames[<span class="pl-c1">0</span>]
 
-   <span class="hljs-keyword">except</span> IndexError:
-       print(ctx.get_help())
-       exit(<span class="hljs-number">1</span>)
+   <span class="pl-k">except</span> <span class="pl-c1">IndexError</span>:
+       <span class="pl-c1">print</span>(ctx.get_help())
+       <span class="pl-c1">exit</span>(<span class="pl-c1">1</span>)
 
-   c = SSHCluster(scheduler, scheduler_port, [], nthreads, nprocs,
+   c <span class="pl-k">=</span> SSHCluster(scheduler, scheduler_port, [], nthreads, nprocs,
                   ssh_username, ssh_port, ssh_private_key, nohost,
                   log_directory)
 
-   <span class="hljs-comment"># start the workers, giving a specific number of processes if provided</span>
-   <span class="hljs-keyword">for</span> hostname <span class="hljs-keyword">in</span> hostnames:
-       <span class="hljs-keyword">if</span> len(hostname) == <span class="hljs-number">1</span>:
-           address = hostname[<span class="hljs-number">0</span>]
-           nprocs = c.nprocs
-       <span class="hljs-keyword">else</span>:
-           address = hostname[<span class="hljs-number">0</span>]
-           <span class="hljs-keyword">try</span>:
-               nprocs = int(hostname[<span class="hljs-number">1</span>])
-           <span class="hljs-keyword">except</span>:
-               <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">'Invalid hostname and number of processes %s'</span>
-                                % (hostname, ))
+   <span class="pl-c"><span class="pl-c">#</span> start the workers, giving a specific number of processes if provided</span>
+   <span class="pl-k">for</span> hostname <span class="pl-k">in</span> hostnames:
+       <span class="pl-k">if</span> <span class="pl-c1">len</span>(hostname) <span class="pl-k">==</span> <span class="pl-c1">1</span>:
+           address <span class="pl-k">=</span> hostname[<span class="pl-c1">0</span>]
+           nprocs <span class="pl-k">=</span> c.nprocs
+       <span class="pl-k">else</span>:
+           address <span class="pl-k">=</span> hostname[<span class="pl-c1">0</span>]
+           <span class="pl-k">try</span>:
+               nprocs <span class="pl-k">=</span> <span class="pl-c1">int</span>(hostname[<span class="pl-c1">1</span>])
+           <span class="pl-k">except</span>:
+               <span class="pl-k">raise</span> <span class="pl-c1">ValueError</span>(<span class="pl-s"><span class="pl-pds">'</span>Invalid hostname and number of processes <span class="pl-c1">%s</span><span class="pl-pds">'</span></span>
+                                <span class="pl-k">%</span> (hostname, ))
        c.workers.append(start_worker(c.logdir, c.scheduler_addr,
                                      c.scheduler_port, address,
                                      c.nthreads, nprocs,
                                      c.ssh_username, c.ssh_port,
                                      c.ssh_private_key, c.nohost))
 
-   <span class="hljs-keyword">import</span> distributed
-   print(<span class="hljs-string">'\n---------------------------------------------------------------'</span>)
-   print(<span class="hljs-string">'                 Dask.distributed v{version}\n'</span>.format(
-       version=distributed.__version__))
-   print(<span class="hljs-string">'Worker nodes:'</span>.format(n=len(hostnames)))
-   <span class="hljs-keyword">for</span> i, host <span class="hljs-keyword">in</span> enumerate(hostnames):
-       print(<span class="hljs-string">'  {num}: {host}'</span>.format(num=i, host=host))
-   print(<span class="hljs-string">'\nscheduler node: {addr}:{port}'</span>.format(addr=scheduler,
-                                                  port=scheduler_port))
-   print(
-       <span class="hljs-string">'---------------------------------------------------------------\n\n'</span>)
+   <span class="pl-k">import</span> distributed
+   <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\n</span>---------------------------------------------------------------<span class="pl-pds">'</span></span>)
+   <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">'</span>                 Dask.distributed v<span class="pl-c1">{version}</span><span class="pl-cce">\n</span><span class="pl-pds">'</span></span>.format(
+       <span class="pl-v">version</span><span class="pl-k">=</span>distributed.<span class="pl-c1">__version__</span>))
+   <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">'</span>Worker nodes:<span class="pl-pds">'</span></span>.format(<span class="pl-v">n</span><span class="pl-k">=</span><span class="pl-c1">len</span>(hostnames)))
+   <span class="pl-k">for</span> i, host <span class="pl-k">in</span> <span class="pl-c1">enumerate</span>(hostnames):
+       <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">'</span>  <span class="pl-c1">{num}</span>: <span class="pl-c1">{host}</span><span class="pl-pds">'</span></span>.format(<span class="pl-v">num</span><span class="pl-k">=</span>i, <span class="pl-v">host</span><span class="pl-k">=</span>host))
+   <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\n</span>scheduler node: <span class="pl-c1">{addr}</span>:<span class="pl-c1">{port}</span><span class="pl-pds">'</span></span>.format(<span class="pl-v">addr</span><span class="pl-k">=</span>scheduler,
+                                                  <span class="pl-v">port</span><span class="pl-k">=</span>scheduler_port))
+   <span class="pl-c1">print</span>(
+       <span class="pl-s"><span class="pl-pds">'</span>---------------------------------------------------------------<span class="pl-cce">\n\n</span><span class="pl-pds">'</span></span>)
 
-   <span class="hljs-comment"># Monitor the output of remote processes.</span>
-   <span class="hljs-comment"># This blocks until the user issues a KeyboardInterrupt.</span>
+   <span class="pl-c"><span class="pl-c">#</span> Monitor the output of remote processes.</span>
+   <span class="pl-c"><span class="pl-c">#</span> This blocks until the user issues a KeyboardInterrupt.</span>
    c.monitor_remote_processes()
 
-   <span class="hljs-comment"># Close down the remote processes and exit.</span>
-   print(<span class="hljs-string">"\n[ dask-ssh ]: Shutting down remote processes"</span>
-         <span class="hljs-string">" (this may take a moment)."</span>)
+   <span class="pl-c"><span class="pl-c">#</span> Close down the remote processes and exit.</span>
+   <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span>[ dask-ssh ]: Shutting down remote processes<span class="pl-pds">"</span></span>
+         <span class="pl-s"><span class="pl-pds">"</span> (this may take a moment).<span class="pl-pds">"</span></span>)
    c.shutdown()
-   print(<span class="hljs-string">"[ dask-ssh ]: Remote processes have been terminated. Exiting."</span>)
+   <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>[ dask-ssh ]: Remote processes have been terminated. Exiting.<span class="pl-pds">"</span></span>)
 
 
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
-   main()
-</code></pre>
+<span class="pl-k">if</span> <span class="pl-c1">__name__</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>__main__<span class="pl-pds">'</span></span>:
+   main()</pre></div>
+</details>
 
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
 
-</body></html>
+    
+
+  </div>
+  <div>&nbsp;</div>
+  </div><script>
+    function showCanonicalImages() {
+      var images = document.getElementsByTagName('img');
+      if (!images) {
+        return;
+      }
+      for (var index = 0; index < images.length; index++) {
+        var image = images[index];
+        if (image.getAttribute('data-canonical-src') && image.src !== image.getAttribute('data-canonical-src')) {
+          image.src = image.getAttribute('data-canonical-src');
+        }
+      }
+    }
+
+    function scrollToHash() {
+      if (location.hash && !document.querySelector(':target')) {
+        var element = document.getElementById('user-content-' + location.hash.slice(1));
+        if (element) {
+           element.scrollIntoView();
+        }
+      }
+    }
+
+    function autorefreshContent(eventSourceUrl) {
+      var initialTitle = document.title;
+      var contentElement = document.getElementById('grip-content');
+      var source = new EventSource(eventSourceUrl);
+      var isRendering = false;
+
+      source.onmessage = function(ev) {
+        var msg = JSON.parse(ev.data);
+        if (msg.updating) {
+          isRendering = true;
+          document.title = '(Rendering) ' + document.title;
+        } else {
+          isRendering = false;
+          document.title = initialTitle;
+          contentElement.innerHTML = msg.content;
+          showCanonicalImages();
+        }
+      }
+
+      source.onerror = function(e) {
+        if (e.readyState === EventSource.CLOSED && isRendering) {
+          isRendering = false;
+          document.title = initialTitle;
+        }
+      }
+    }
+
+    window.onhashchange = function() {
+      scrollToHash();
+    }
+
+    window.onload = function() {
+      scrollToHash();
+    }
+
+    showCanonicalImages();
+
+    var autorefreshUrl = document.getElementById('preview-page').getAttribute('data-autorefresh-url');
+    if (autorefreshUrl) {
+      autorefreshContent(autorefreshUrl);
+    }
+  </script>
+</body>
+</html>

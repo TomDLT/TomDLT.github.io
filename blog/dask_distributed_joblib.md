@@ -253,7 +253,9 @@ for hostname in hostnames:
 
 Then we simply call the script with `python my_dask_ssh.py` instead of `dask-ssh`.
 
-The full script is given below.
+The full script is given below (click on `Details`).
+
+<details>
 
 
  ```python
@@ -359,3 +361,5 @@ def main(ctx, scheduler, scheduler_port, hostnames, hostfile, nthreads, nprocs,
 if __name__ == '__main__':
     main()
 ```
+
+</details>
