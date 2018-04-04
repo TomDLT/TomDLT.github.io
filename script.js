@@ -1,9 +1,5 @@
 function change_tab(new_tab)
 {
-        // reset blog
-        document.getElementById('post_list').style['display'] = 'block';
-        document.getElementById('includedContent').style['display'] = 'none';
-
         document.getElementById('tab_'+current_tab).className = 'tab_off tab';
         document.getElementById('tab_'+new_tab).className = 'tab_on tab';
         document.getElementById('tab2_'+current_tab).className = 'tab_off tab';
@@ -45,24 +41,6 @@ var url = window.location.href;
 
 if (hash == '')
     change_tab(current_tab);
-else if (hash.substring(hash.length - 4, hash.length) == 'html') {
-    change_tab('blog')
-    load_blog_post(hash)
-}
 else {
     change_tab(hash);
-}
-
-
-function load_blog_post(filename)
-{
-
-    document.getElementById('post_list').style['display'] = 'none';
-    document.getElementById('includedContent').style['display'] = 'block';
-
-    window.location.hash = filename;
-    $(document).ready(function() {
-        var path = "https://tomdlt.github.io/blog/"
-        $("#includedContent").load(path + filename);
-    });
 }
