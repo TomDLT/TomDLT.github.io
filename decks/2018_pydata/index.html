@@ -217,12 +217,21 @@ class: middle
 ```
 from sklearn.compose import `make_column_transformer`
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LogisticRegression
 
+numeric = make_pipeline(
+    SimpleImputer(strategy='median'),
+    StandardScaler())
+
+categorical = make_pipeline(
+    SimpleImputer(strategy='constant', fill_value='missing'),
+    OneHotEncoder())
+
 preprocessing = `make_column_transformer`(
-    [(['age', 'fare'], StandardScaler()),   # continuous features
-     (['sex', 'pclass'], OneHotEncoder())], # categorical features
+    [(['age', 'fare'], numeric),         # continuous features
+     (['sex', 'pclass'], categorical)],  # categorical features
     remainder='drop')
 
 model = make_pipeline(preprocessing,
@@ -246,13 +255,6 @@ model = TransformedTargetRegressor(LinearRegression(),
 
 y_pred = model.fit(X_train, y_train).predict(X_test)
 ```
-
-<!-- ######################### -->
----
-class: middle
-## `CategoricalEncoder`/`OneHotEncoder`
-## `MICEImputer`
-## ...
 
 
 <!-- ######################### -->
