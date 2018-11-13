@@ -11,7 +11,7 @@
 class: center, middle
 
 # Scikit-learn's Transformers
-## - 0.20 and after -
+## - v0.20 and beyond -
 Tom Dupré la Tour - PyParis 14/11/2018
 .affiliations[
   ![Telecom](images/telecom-paristech-logo.png)
@@ -54,6 +54,7 @@ y_pred = model.fit(X_train, y_train).predict(X_test)
 <!-- ######################### -->
 
 --
+count: false
 
 ## Advantages
 
@@ -64,6 +65,7 @@ y_pred = model.fit(X_train, y_train).predict(X_test)
 
 <!-- ######################### -->
 ---
+class: middle
 ## Transformers before v0.20
 
 - Dimensionality reduction: `PCA`, `KernelPCA`, `FastICA`, `NMF`, etc.
@@ -83,21 +85,40 @@ class: center, middle
 
 <!-- ######################### -->
 ---
-## New in v0.20 - Easier data science pipeline
+# v0.20: Easier data science pipeline
 
+## Many new Transfomers
 - `ColumnTransformer` (new)
 - `PowerTransformer` (new)
 - `KBinsDiscretizer` (new)
 - `MissingIndicator` (new)
 - `SimpleImputer` (new)
-
-- `OneHotEncoder` handles categorical string features
 - `OrdinalEncoder`  (new)
+- `TransformedTargetRegressor` (new)
 
+## Transformer with significant improvements
+- `OneHotEncoder` handles categorical features.
 - `MaxAbsScaler`, `MinMaxScaler`, `RobustScaler`, `StandardScaler`,
   `PowerTransformer`, and `QuantileTransformer`, handles missing values (NaN).
 
-- `TransformedTargetRegressor` (new)
+<!-- ######################### -->
+---
+# v0.20: Easier data science pipeline
+
+- `SimpleImputer` (new) handles categorical features.
+- `MissingIndicator` (new)
+
+--
+count: false
+
+- `OneHotEncoder` handles categorical features.
+- `OrdinalEncoder`  (new)
+
+--
+count: false
+
+- `MaxAbsScaler`, `MinMaxScaler`, `RobustScaler`, `StandardScaler`,
+  `PowerTransformer`, and `QuantileTransformer`, handles missing values (NaN).
 
 
 
@@ -118,9 +139,9 @@ numeric = make_pipeline(
     StandardScaler())
 
 categorical = make_pipeline(
-    # new: 'constant' strategy, handles categories (strings)
+    # new: 'constant' strategy, handles categorical features
     SimpleImputer(strategy='constant', fill_value='missing'),
-    # new: handles categories (strings)
+    # new: handles categorical features
     OneHotEncoder())
 
 preprocessing = `make_column_transformer`(
@@ -136,7 +157,7 @@ model = make_pipeline(preprocessing,
 <!-- ######################### -->
 ---
 class: middle
-## `PowerTransformer`
+## `PowerTransformer` (new)
 
 .center[<img src="images/pt1.png" style="width: 49%;" />
 <img src="images/pt2.png" style="width: 49%;" />]
@@ -144,7 +165,7 @@ class: middle
 <!-- ######################### -->
 ---
 class: middle
-## `KBinsDiscretizer`
+## `KBinsDiscretizer` (new)
 
 .center[<img src="images/kbins_strategies.png" style="width: 100%;" />]
 
@@ -152,7 +173,7 @@ class: middle
 <!-- ######################### -->
 ---
 class: middle
-## `KBinsDiscretizer`
+## `KBinsDiscretizer` (new)
 
 .center[<img src="images/kbins_classif.png" style="width: 100%;" />]
 
@@ -160,7 +181,7 @@ class: middle
 <!-- ######################### -->
 ---
 class: middle
-## `TransformedTargetRegressor`
+## `TransformedTargetRegressor` (new)
 
 .center[<img src="images/ttr.png" style="width: 100%;" />]
 
@@ -169,7 +190,7 @@ class: middle
 <!-- ######################### -->
 ---
 class: middle
-## `TransformedTargetRegressor`
+## `TransformedTargetRegressor` (new)
 
 ```
 import numpy as np
@@ -234,7 +255,7 @@ class: center, middle
 <!-- ######################### -->
 ---
 # Nearest Neighbors
-## Computed with brute force, `BallTree`, or `KDTree`, ...
+## Computed with brute force, `KDTree`, or `BallTree`, ...
 
 .center[<img src="images/kdtree.png" style="width: 250px;" />
 <img src="images/balltree.png" style="width: 400px;" />]
