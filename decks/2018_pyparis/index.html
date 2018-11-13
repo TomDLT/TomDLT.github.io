@@ -10,7 +10,7 @@
 
 class: center, middle
 
-# Transformers in scikit-learn
+# Scikit-learn's Transformers
 ## - 0.20 and after -
 Tom Dupré la Tour - PyParis 14/11/2018
 .affiliations[
@@ -72,7 +72,7 @@ y_pred = model.fit(X_train, y_train).predict(X_test)
 - Expansions: `PolynomialFeatures`
 - Imputation: `Imputer`
 - Custom 1D transforms: `FunctionTransformer`
-- Quantiles: `QuantileTransformer` (0.19)
+- Quantiles: `QuantileTransformer` (v0.19)
 - and also: `Binarizer`, `KernelCenterer`, `RBFSampler`, ...
 
 
@@ -83,7 +83,7 @@ class: center, middle
 
 <!-- ######################### -->
 ---
-## New in v0.20
+## New in v0.20 - Easier data science pipeline
 
 - `ColumnTransformer` (new)
 - `PowerTransformer` (new)
@@ -118,9 +118,9 @@ numeric = make_pipeline(
     StandardScaler())
 
 categorical = make_pipeline(
-    # new: 'constant' strategy, handles strings and pandas categories
+    # new: 'constant' strategy, handles categories (strings)
     SimpleImputer(strategy='constant', fill_value='missing'),
-    # new: handle strings and pandas categories
+    # new: handles categories (strings)
     OneHotEncoder())
 
 preprocessing = `make_column_transformer`(
@@ -138,6 +138,17 @@ model = make_pipeline(preprocessing,
 class: middle
 ## `PowerTransformer`
 
+.center[<img src="images/pt1.png" style="width: 49%;" />
+<img src="images/pt2.png" style="width: 49%;" />]
+
+<!-- ######################### -->
+---
+class: middle
+## `KBinsDiscretizer`
+
+.center[<img src="images/kbins_strategies.png" style="width: 100%;" />]
+
+
 <!-- ######################### -->
 ---
 class: middle
@@ -149,14 +160,9 @@ class: middle
 <!-- ######################### -->
 ---
 class: middle
-## `KBinsDiscretizer`
+## `TransformedTargetRegressor`
 
-.center[<img src="images/kbins_strategies.png" style="width: 100%;" />]
-
-<!-- ######################### -->
----
-class: middle
-## `PowerTransformer`
+.center[<img src="images/ttr.png" style="width: 100%;" />]
 
 
 
@@ -177,20 +183,32 @@ model = TransformedTargetRegressor(LinearRegression(),
 y_pred = model.fit(X_train, y_train).predict(X_test)
 ```
 
-<!-- ######################### -->
----
-class: middle
-## `TransformedTargetRegressor`
-
-.center[<img src="images/ttr.png" style="width: 100%;" />]
-
 
 <!-- ######################### -->
 ---
 class: middle
-## Glossary of Common Terms and API Elements
+## Glossary of Common Terms and API Elements (new)
 
-- http://scikit-learn.org/dev/glossary.html
+- https://scikit-learn.org/stable/glossary.html
+
+<!-- ######################### -->
+---
+class: middle
+## Joblib backend system (new)
+
+- New pluggable backend system for Joblib
+- New default backend for single host multiprocessing (loky)
+    - Does not break third-party threading runtimes
+- Ability to delegate to dask/distributed for cluster computing
+
+
+.center[
+.affiliations[
+  ![joblib](images/joblib_logo.png)
+  ![dask](images/dask_logo.png)
+]
+]
+
 
 <!-- ######################### -->
 ---
@@ -216,7 +234,7 @@ class: center, middle
 <!-- ######################### -->
 ---
 # Nearest Neighbors
-## Computed with brute force, `KDTree`, or `BallTree`, ...
+## Computed with brute force, `BallTree`, or `KDTree`, ...
 
 .center[<img src="images/kdtree.png" style="width: 250px;" />
 <img src="images/balltree.png" style="width: 400px;" />]
@@ -224,9 +242,9 @@ class: center, middle
 --
 count: false
 ## ... or with approximated methods (random projections)
-- annoy (3.5k stars) (Spotify)
-- faiss (3.7k stars) (Facebook research)
-- nmslib (0.8k stars)
+- annoy (by Spotify)
+- faiss (by Facebook research)
+- nmslib
 - ...
 
 
@@ -260,7 +278,7 @@ count: false
 
 <!-- ######################### -->
 ---
-## Calling estimators
+## Nearest Neighbors call
 
 - `KernelDensity`, `NearestNeighbors`:
     - Create an instance of `BallTree` or `KDTree`
@@ -354,9 +372,9 @@ class: middle
 ---
 class: center, middle
 # Proposed solution
-## Precomputed sparse nearest neighbors graph
+## Precompute sparse graphs in a Transformer
 
-### [still under review]
+### [#10482]
 
 
 <!-- ######################### -->
@@ -367,10 +385,7 @@ Steps:
 1. Make all classes accept precomputed sparse neighbors graph
 --
 count: false
-2. Add sparse graph filtering functions
---
-count: false
-3. Pipeline: Add `KNeighborsTransformer` and `RadiusNeighborsTransformer`
+2. Pipeline: Add `KNeighborsTransformer` and `RadiusNeighborsTransformer`
 
 ```
 from sklearn.pipeline import make_pipeline
@@ -380,10 +395,8 @@ from sklearn.manifold import TSNE
 graph = KNeighborsTransformer(n_neighbors=n_neighbors,
                               mode='distance', metric=metric)
 tsne = TSNE(metric='precomputed', method="barnes_hut")
-model_1 = make_pipeline(graph,
-                        tsne,
-                        memory='path/to/cache')
 
+model_1 = make_pipeline(graph, tsne)
 model_2 = TSNE(metric=metric, method="barnes_hut")
 ```
 
@@ -428,7 +441,7 @@ custom NN estimator example -->
 class: center, middle, end-slide
 
 # Thank you for your attention!
-tomdlt.github.io/decks/2018_pydata
+tomdlt.github.io/decks/2018_pyparis
 
 @tomdlt10
 
