@@ -1,7 +1,10 @@
 @import url(webfont-lato-400-900.css);
 
 @page {
-  size: 908px 681px;
+  /* 4:3 */
+  /*size: 908px 681px;*/
+  /* 16:9 */
+  size: 1208px 681px;
   margin: 0;
 }
 
