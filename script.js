@@ -35,6 +35,32 @@ function select_publication(pub_type='pub') {
     }
 }
 
+// Hide / show the year rows so that only years containing at least one
+// currently–visible publication remain on screen.
+// First make all years visible, then hide those without any visible publications.
+function update_year_visibility() {
+    const $rows = $('#tab_content_publications > .row');
+    $rows.show();
+    $rows.each(function () {
+        if ($(this).find('.pub:visible').length === 0) {
+            $(this).hide();
+        }
+    });
+}
+
+// Ensure the correct state on initial load.
+$(update_year_visibility);
+
+// Call update_year_visibility every time the publication filter changes.
+// We achieve this by wrapping the existing `select_publication` function.
+if (typeof window.select_publication === 'function') {
+    const originalSelect = window.select_publication;
+    window.select_publication = function (pub_type = 'pub') {
+        originalSelect(pub_type);      // run original logic
+        update_year_visibility();      // refresh year visibility
+    };
+}
+
 var current_tab = 'about_me';
 var hash = window.location.hash.substr(1);
 var url = window.location.href;

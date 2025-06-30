@@ -199,14 +199,14 @@
           <div class="tab_content" id="tab_content_publications">
             <h2>Publications</h2>
             <!-- <hr align="left" class="hr2" /> -->
-            <button type="button" class="btn btn-secondary btn_on" id="btn_pub" onclick="select_publication('pub')">All</button>
-            <button type="button" class="btn btn-secondary" id="btn_journal" onclick="select_publication('journal')"><img src="https://dblp.uni-trier.de/faq/article-box.png" alt
+            <button type="button" class="btn btn-secondary btn_on" id="btn_pub" onclick="select_publication('pub');update_year_visibility();">All</button>
+            <button type="button" class="btn btn-secondary" id="btn_journal" onclick="select_publication('journal');update_year_visibility();"><img src="https://dblp.uni-trier.de/faq/article-box.png" alt
                 title="Journal articles"> Journals</button>
-            <button type="button" class="btn btn-secondary" id="btn_proceeding" onclick="select_publication('proceeding')"><img
+            <button type="button" class="btn btn-secondary" id="btn_proceeding" onclick="select_publication('proceeding');update_year_visibility();"><img
                 src="https://dblp.uni-trier.de/faq/inproceedings-box.png" alt title="Conference and Workshop Papers"> Proceedings</button>
-            <button type="button" class="btn btn-secondary" id="btn_preprint" onclick="select_publication('preprint')"><img src="https://dblp.uni-trier.de/faq/informal-box.png" alt
+            <button type="button" class="btn btn-secondary" id="btn_preprint" onclick="select_publication('preprint');update_year_visibility();"><img src="https://dblp.uni-trier.de/faq/informal-box.png" alt
                 title="Informal and Other Publications"> Preprints</button>
-            <button type="button" class="btn btn-secondary" id="btn_thesis" onclick="select_publication('thesis')"><img src="https://dblp.uni-trier.de/faq/book-box.png" alt
+            <button type="button" class="btn btn-secondary" id="btn_thesis" onclick="select_publication('thesis');update_year_visibility();"><img src="https://dblp.uni-trier.de/faq/book-box.png" alt
                 title="Books and Thesis"> Thesis</button>
 
             <div style="height:25px">
