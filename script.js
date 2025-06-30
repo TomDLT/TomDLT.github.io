@@ -8,6 +8,7 @@ function change_tab(new_tab)
         document.getElementById('tab_content_'+new_tab).style['display'] = 'block';
         window.location.hash = new_tab;
         current_tab = new_tab;
+        update_year_visibility();
         return false;
 }
 
@@ -47,9 +48,6 @@ function update_year_visibility() {
         }
     });
 }
-
-// Ensure the correct state on initial load.
-$(update_year_visibility);
 
 // Call update_year_visibility every time the publication filter changes.
 // We achieve this by wrapping the existing `select_publication` function.
