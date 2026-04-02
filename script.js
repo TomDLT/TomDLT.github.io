@@ -1,5 +1,8 @@
 function change_tab(new_tab)
 {
+        if (document.getElementById('tab_content_'+new_tab) === null) {
+                new_tab = 'about_me';
+        }
         document.getElementById('tab_'+current_tab).className = 'tab_off tab';
         document.getElementById('tab_'+new_tab).className = 'tab_on tab';
         document.getElementById('tab2_'+current_tab).className = 'tab_off tab';
@@ -61,7 +64,6 @@ if (typeof window.select_publication === 'function') {
 
 var current_tab = 'about_me';
 var hash = window.location.hash.substr(1);
-var url = window.location.href;
 
 if (hash == '')
     change_tab(current_tab);
